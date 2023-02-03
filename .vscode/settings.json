@@ -1,0 +1,60 @@
+{
+  "cSpell.words": [
+    "Avenir",
+    "headlessui",
+    "heroicons",
+    "predeploy",
+    "Skywalker",
+    "Starjedi",
+    "Starjout",
+    "SWAPI",
+    "tailwindcss",
+    "todos"
+  ],
+  "spellright.language": ["en-US-10-1.", "en-US-9-0."],
+  "markdownlint.config": {
+    "MD033": false
+  },
+  "css.lint.unknownAtRules": "ignore",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "[yaml]": {
+    "editor.formatOnSave": false
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.validate.enable": true,
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "typescript.format.semicolons": "insert",
+  "typescript.preferences.quoteStyle": "double",
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "typescript.tsserver.maxTsServerMemory": 6144,
+  "npm-intellisense.importQuotes": "\"",
+  "npm-intellisense.importLinebreak": "auto",
+
+  "eslint.format.enable": true,
+  "eslint.run": "onType",
+
+  "reactSnippets.settings.prettierEnabled": true,
+  "reactSnippets.settings.importReactOnTop": true,
+
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "jspm_packages": true,
+    "node_modules": true
+  },
+  "javascript.autoClosingTags": true,
+  "typescript.autoClosingTags": true,
+  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.useInlineCompletions": true
+}
