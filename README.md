@@ -36,7 +36,7 @@ npm install
 ### Install helpers: TailwindCSS and so on
 
 ```bash
-npm i --save-dev tailwindcss postcss autoprefixer
+npm i --save-dev tailwindcss postcss autoprefixer postcss-import
 npx tailwindcss init -p
 ```
 

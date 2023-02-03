@@ -54,7 +54,5 @@
     "node_modules": true
   },
   "javascript.autoClosingTags": true,
-  "typescript.autoClosingTags": true,
-  "emmet.showSuggestionsAsSnippets": true,
-  "emmet.useInlineCompletions": true
+  "typescript.autoClosingTags": true
 }

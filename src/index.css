@@ -6,52 +6,76 @@
 @font-face {
   font-family: "Starjout";
   font-display: swap;
-  src: url('./assets/Starjout.eot'); /* IE9 Compat Modes */
+  src: url('./assets/Starjout.eot');
+  /* IE9 Compat Modes */
   src: local('Starjout'),
-       url('./assets/Starjout.woff2') format('woff2'), /* Super Modern Browsers */
-       url('./assets/Starjout.woff') format('woff'), /* Modern Browsers */
-       url('./assets/Starjout.ttf') format('truetype') /* Safari, Android, iOS */
+    url('./assets/Starjout.woff2') format('woff2'),
+    /* Super Modern Browsers */
+    url('./assets/Starjout.woff') format('woff'),
+    /* Modern Browsers */
+    url('./assets/Starjout.ttf') format('truetype')
+    /* Safari, Android, iOS */
 }
 
 @font-face {
   font-family: "Starjedi";
   font-display: swap;
-  src: url('./assets/Starjedi.eot'); /* IE9 Compat Modes */
+  src: url('./assets/Starjedi.eot');
+  /* IE9 Compat Modes */
   src: local('Starjedi'),
-       url('./assets/Starjedi.woff2') format('woff2'), /* Super Modern Browsers */
-       url('./assets/Starjedi.woff') format('woff'), /* Modern Browsers */
-       url('./assets/Starjedi.ttf') format('truetype') /* Safari, Android, iOS */
+    url('./assets/Starjedi.woff2') format('woff2'),
+    /* Super Modern Browsers */
+    url('./assets/Starjedi.woff') format('woff'),
+    /* Modern Browsers */
+    url('./assets/Starjedi.ttf') format('truetype')
+    /* Safari, Android, iOS */
 }
 
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  font-family: theme('fontFamily.Roboto');
+  color: theme('colors.mlt-gray-6');
+  background-color: theme('colors.mlt-dark-2');
+  /* font-family: 'Roboto', sans-serif; */
+  /* font-size: 16px; */
+  /* line-height: 24px; */
+  /* font-weight: 400; */
+  /* color-scheme: light dark; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  /* --mlt-gray-1: #646464;
+  --mlt-gray-2: #787878;
+  --mlt-gray-3: #a0a0a0;
+  --mlt-gray-4: #b4b4b4;
+  --mlt-gray-5: #c8c8c8;
+  --mlt-gray-6: #d4d4d4;
+
+  --mlt-dark-1: #111111;
+  --mlt-dark-2: #242424;
+  --mlt-dark-3: #333333;
+  --mlt-dark-4: #3c3c3c;
+  --mlt-dark-5: #444444;
+  --mlt-dark-6: #555555;
+
+  --mlt-blue-primary: #548ADA;
+  --mlt-blue-secondary: #5d9fff;
+  --mlt-purple-primary: #9468D8;
+  --mlt-purple-secondary: #b07bff; */
 }
 
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
+html,
+body,
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  /* display: flex;
+  place-items: center; */
+  /* min-width: 320px;
+  min-height: 100vh; */
 }
