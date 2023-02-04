@@ -37,15 +37,16 @@ module.exports = {
         "mlt-blue-primary": "#548ADA",
         "mlt-blue-secondary": "#5d9fff",
         "mlt-purple-primary": "#9468D8",
-        "mlt-purple-secondary": "#b07bff"
+        "mlt-purple-secondary": "#b07bff",
+        "mlt-yellow-primary": "#facc15"
       },
       fontSize: {
-        "mlt-auto": "8.6vw"
+        "mlt-auto": "7.8vw"
       },
       fontFamily: {
         Starjout: ["Starjout", "normal"],
         Starjedi: ["Starjedi", "normal"],
-        Roboto: ["Roboto", "sans-serif"]
+        Roboto: ["Roboto", "Arial", "sans-serif"]
       }
     }
   },

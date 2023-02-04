@@ -1,12 +1,15 @@
 {
   "cSpell.words": [
     "Avenir",
+    "daisyui",
     "headlessui",
     "heroicons",
     "predeploy",
+    "Roboto",
     "Skywalker",
     "Starjedi",
     "Starjout",
+    "starships",
     "SWAPI",
     "tailwindcss",
     "todos"
@@ -32,12 +35,14 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+
   "typescript.validate.enable": true,
   "typescript.disableAutomaticTypeAcquisition": true,
   "typescript.format.semicolons": "insert",
   "typescript.preferences.quoteStyle": "double",
   "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "typescript.tsserver.maxTsServerMemory": 6144,
+
   "npm-intellisense.importQuotes": "\"",
   "npm-intellisense.importLinebreak": "auto",
 
@@ -53,6 +58,7 @@
     "jspm_packages": true,
     "node_modules": true
   },
+
   "javascript.autoClosingTags": true,
   "typescript.autoClosingTags": true
 }

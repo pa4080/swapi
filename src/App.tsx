@@ -1,15 +1,16 @@
 import { useState } from "react";
+import Search from "./components/Search";
 
-function App() {
+type Props = {};
+
+const App = (props: Props) => {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="App font-Starjedi text-5xl leading-10 text-yellow-400">
-      Star
-      <br />
-      Wars
+    <div className="App flex flex-col items-center justify-center h-full">
+      <Search />
     </div>
   );
-}
+};
 
 export default App;

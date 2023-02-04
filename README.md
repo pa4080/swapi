@@ -2,11 +2,21 @@
 
 SWAPI (Star Wars API) Search App with ReactJs and Typescript Exercise.
 
-## Resources
+## Resources and referens
 
 - [Star Wars API](https://swapi.dev/)
-- [Star Wars Font](https://fontmeme.com/fonts/star-jedi-font/)
+
+  Related:
+
+  - [SW Guide Site](https://starwars-visualguide.com/)
+  - [SW Guide GitHub](https://github.com/tbone849/star-wars-guide/tree/master/build/assets/img)
+  - [SWAPI Json Server GitHub](https://github.com/johnlindquist/swapi-json-server/tree/master/public)
+
+- [Star Jedi Font](https://www.dafont.com/star-jedi.font)
+
 - [Font Converter](https://cloudconvert.com/ttf-converter)
+
+- [Axios HTTP Client Using TypeScript](https://altrim.io/posts/axios-http-client-using-typescript)
 
 ## Setup the Project
 
