@@ -45,6 +45,10 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
   );
   useEffect(setLocalStorage.bind(this, "SS_CATS", searchCategory), [searchCategory]);
 
+  useEffect(() => {
+    if (!searched) setSearchResults([]);
+  }, []);
+
   return (
     <SearchContext.Provider
       value={{
