@@ -11,12 +11,11 @@ SWAPI (Star Wars API) Search App with ReactJs and Typescript Exercise.
   - [SW Guide Site](https://starwars-visualguide.com/)
   - [SW Guide GitHub](https://github.com/tbone849/star-wars-guide/tree/master/build/assets/img)
   - [SWAPI Json Server GitHub](https://github.com/johnlindquist/swapi-json-server/tree/master/public)
+  - <https://swapi.py4e.com/about>
 
 - [Star Jedi Font](https://www.dafont.com/star-jedi.font)
 
 - [Font Converter](https://cloudconvert.com/ttf-converter)
-
-- [Axios HTTP Client Using TypeScript](https://altrim.io/posts/axios-http-client-using-typescript)
 
 ## Setup the Project
 
@@ -43,7 +42,7 @@ npm install
 
 - Clean the `src/` and `public/` directories and start working on the project.
 
-### Install helpers: TailwindCSS and so on
+### Install other packages
 
 ```bash
 npm i --save-dev tailwindcss postcss autoprefixer postcss-import
@@ -53,8 +52,13 @@ npx tailwindcss init -p
 ```bash
 npm i @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio
 npm i @headlessui/react
-npm i react-icons
 npm i @heroicons/react
+npm i react-icons
+```
+
+```bash
+npm i dompurify @types/dompurify
+npm i axios
 ```
 
 **References:**

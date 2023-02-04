@@ -1,19 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BsSearch as SearchIco, BsX } from "react-icons/bs";
-import { swapiEndPoints } from "../models";
+import { SwapiEndPoints as SwapiCats, SwapiSearchResult } from "../models";
 import { getLocalStorage, setLocalStorage } from "../helpers/local-storage";
+import DOMPurify from "dompurify";
+import axiosClient from "../helpers/axios-client";
 
 interface Props {}
 
 const SearchForm: React.FC<Props> = ({}) => {
   const [searched, setSearched] = useState<string>("");
-  const [category, setCategory] = useState<string>(
+  const [searchResults, setSearchResults] = useState<SwapiSearchResult[]>([]);
+  const [searchCategory, setSearchCategory] = useState<string>(
     getLocalStorage("STAR_CATEGORY", "all")
   );
 
   useEffect(() => {
-    setLocalStorage("STAR_CATEGORY", category);
-  }, [category]);
+    setLocalStorage("STAR_CATEGORY", searchCategory);
+  }, [searchCategory]);
+
+  useEffect(() => {
+    console.log(searchResults);
+  }, [searchResults]);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -22,21 +29,52 @@ const SearchForm: React.FC<Props> = ({}) => {
     inputRef.current?.focus();
   };
 
+  const fetchSwapi = async (categories: string[]): Promise<void> => {
+    const searchDataArray: SwapiSearchResult[] = [];
+    const word: string = DOMPurify.sanitize(searched).replace(/["?]/g, "");
+    const uri = (cat: string): string => `${cat}/?search=${word}`;
+
+    for (const category of categories) {
+      try {
+        const resp = await axiosClient.get(uri(category));
+        searchDataArray.push({ ...resp.data, category });
+      } catch (error) {
+        console.error(error);
+      }
+      /**
+      setLoading(true);
+      axiosClient.get(url)
+        .then(({ data }) => {
+          setSearchResults([...dataArray, data]);
+          setTimeout(() => { setLoading(false); }, 50);
+        })
+        .catch(() => { setLoading(false); });
+      */
+    }
+
+    setSearchResults(searchDataArray.sort((a, b) => b.count - a.count));
+  };
+
   const handleSearch = (ev: React.FormEvent): void => {
     ev.preventDefault();
     if (!searched) return;
 
-    console.log(searched, category);
+    let categoryList: string[] = [];
+
+    if (searchCategory === "all") for (const key in SwapiCats) categoryList.push(key);
+    else categoryList.push(searchCategory);
+
+    fetchSwapi(categoryList);
   };
 
   const handleRadioChange = (ev: React.ChangeEvent<HTMLInputElement>): void => {
-    setCategory(ev.target.value);
+    setSearchCategory(ev.target.value);
   };
 
   const renderRadioButtons: JSX.Element = ((): JSX.Element => {
     const items: string[] = ["all"];
 
-    for (const key in swapiEndPoints) {
+    for (const key in SwapiCats) {
       items.push(key);
     }
 
@@ -49,7 +87,7 @@ const SearchForm: React.FC<Props> = ({}) => {
               name={item}
               id={item}
               value={item}
-              checked={category === item}
+              checked={searchCategory === item}
               onChange={handleRadioChange}
             />
             <span>{item} </span>
@@ -60,10 +98,7 @@ const SearchForm: React.FC<Props> = ({}) => {
   })();
 
   return (
-    <form
-      onSubmit={handleSearch}
-      className="search-form my-4 sm:my-8 md:my-8 w-full"
-    >
+    <form onSubmit={handleSearch} className="search-form my-4 sm:my-8 md:my-8 w-full">
       <div className="search-field relative drop-shadow-lg shadow-mlt-dark-1">
         <div className="pr-20 relative flex items-center">
           <input
