@@ -12,7 +12,8 @@ const Search: React.FC<Props> = ({}) => {
             text-mlt-auto sm:text-5xl md:text-6xl
             text-shadow-mlt-dark-0"
       >
-        =Star Hunters+
+        {/* =Star Hunters+ */}
+        =Star Searches+
         {/* <br />` ~ ! @ # $ % ^ & * ( ) - _ = + / | \ ' " . : [ ] { } &lt; &gt; */}
       </h1>
       <SearchForm />

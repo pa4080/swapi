@@ -41,7 +41,7 @@ module.exports = {
         "mlt-yellow-primary": "#facc15"
       },
       fontSize: {
-        "mlt-auto": "7.8vw"
+        "mlt-auto": "7.4vw"
       },
       fontFamily: {
         Starjout: ["Starjout", "normal"],

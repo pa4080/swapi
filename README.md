@@ -12,6 +12,7 @@ SWAPI (Star Wars API) Search App with ReactJs and Typescript Exercise.
   - [SW Guide GitHub](https://github.com/tbone849/star-wars-guide/tree/master/build/assets/img)
   - [SWAPI Json Server GitHub](https://github.com/johnlindquist/swapi-json-server/tree/master/public)
   - <https://swapi.py4e.com/about>
+  - <https://starwars.fandom.com/wiki/Obi-Wan_Kenobi_(television_series)>
 
 - [Star Jedi Font](https://www.dafont.com/star-jedi.font)
 
@@ -30,6 +31,7 @@ npm create vite@latest
 # ✔ Select a variant: › TypeScript
 cd exc-ts-react-star-wars/
 npm install
+npm i react-router-dom axios dompurify @types/dompurify
 ```
 
 - Create start command in [`package.json`](package.json) file as follows:
@@ -54,11 +56,6 @@ npm i @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio
 npm i @headlessui/react
 npm i @heroicons/react
 npm i react-icons
-```
-
-```bash
-npm i dompurify @types/dompurify
-npm i axios
 ```
 
 **References:**

@@ -1,22 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BsSearch as SearchIco, BsX } from "react-icons/bs";
 import { SwapiEndPoints as SwapiCats, SwapiSearchResult } from "../models";
-import { getLocalStorage, setLocalStorage } from "../helpers/local-storage";
+import { getLocalStorage, setLocalStorage } from "../helpers/browserStorage";
 import DOMPurify from "dompurify";
-import axiosClient from "../helpers/axios-client";
+import axiosClient from "../helpers/axiosClient";
+import { useSearchContext } from "../contexts/ContextProvider";
 
 interface Props {}
 
 const SearchForm: React.FC<Props> = ({}) => {
-  const [searched, setSearched] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<SwapiSearchResult[]>([]);
-  const [searchCategory, setSearchCategory] = useState<string>(
-    getLocalStorage("STAR_CATEGORY", "all")
-  );
-
-  useEffect(() => {
-    setLocalStorage("STAR_CATEGORY", searchCategory);
-  }, [searchCategory]);
+  const {
+    searched,
+    setSearched,
+    searchResults,
+    setSearchResults,
+    searchCategory,
+    setSearchCategory
+  } = useSearchContext();
 
   useEffect(() => {
     console.log(searchResults);
@@ -79,7 +79,7 @@ const SearchForm: React.FC<Props> = ({}) => {
     }
 
     return (
-      <div className="mt-4 text-md pr-3 select-none">
+      <div className="mt-4 text-md px-3 select-none">
         {items.map((item, i) => (
           <label key={i} className="inline-flex items-center scale-95">
             <input
@@ -124,7 +124,8 @@ const SearchForm: React.FC<Props> = ({}) => {
         <button
           type="submit"
           className="absolute right-0 top-0 h-full rounded-r-full w-20 text-xl
-          bg-mlt-dark-4 text-yellow-400 border-solid border border-mlt-dark-6 border-l-0"
+          bg-mlt-dark-4 text-yellow-400 border-solid border border-mlt-dark-6 border-l-0
+          focus-visible:outline outline-yellow-400"
         >
           <SearchIco className="mx-auto" />
         </button>
