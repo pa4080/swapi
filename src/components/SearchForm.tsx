@@ -1,10 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { BsSearch as SearchIco, BsX } from "react-icons/bs";
-import { SwapiEndPoints as SwapiCats, SwapiSearchResult } from "../models";
-import { getLocalStorage, setLocalStorage } from "../helpers/browserStorage";
-import DOMPurify from "dompurify";
-import axiosClient from "../helpers/axiosClient";
+import { SwapiEndPoints as SwapiCats } from "../models";
 import { useSearchContext } from "../contexts/ContextProvider";
+import swapiSearch from "../helpers/swapiSearch";
 
 interface Props {}
 
@@ -29,42 +27,24 @@ const SearchForm: React.FC<Props> = ({}) => {
     inputRef.current?.focus();
   };
 
-  const fetchSwapi = async (categories: string[]): Promise<void> => {
-    const searchDataArray: SwapiSearchResult[] = [];
-    const word: string = DOMPurify.sanitize(searched).replace(/["?]/g, "");
-    const uri = (cat: string): string => `${cat}/?search=${word}`;
-
-    for (const category of categories) {
-      try {
-        const resp = await axiosClient.get(uri(category));
-        searchDataArray.push({ ...resp.data, category });
-      } catch (error) {
-        console.error(error);
-      }
-      /**
-      setLoading(true);
-      axiosClient.get(url)
-        .then(({ data }) => {
-          setSearchResults([...dataArray, data]);
-          setTimeout(() => { setLoading(false); }, 50);
-        })
-        .catch(() => { setLoading(false); });
-      */
-    }
-
-    setSearchResults(searchDataArray.sort((a, b) => b.count - a.count));
-  };
-
-  const handleSearch = (ev: React.FormEvent): void => {
+  const handleSearch = async (ev: React.FormEvent): Promise<void> => {
     ev.preventDefault();
     if (!searched) return;
 
-    let categoryList: string[] = [];
+    const cats: string[] = [];
 
-    if (searchCategory === "all") for (const key in SwapiCats) categoryList.push(key);
-    else categoryList.push(searchCategory);
+    if (searchCategory === "all") for (const key in SwapiCats) cats.push(key);
+    else cats.push(searchCategory);
 
-    fetchSwapi(categoryList);
+    try {
+      // setLoading(true)
+      const results = await swapiSearch(cats, searched);
+      setSearchResults(results);
+      // setLoading(false)
+    } catch (error) {
+      // setLoading(false)
+      console.error(error);
+    }
   };
 
   const handleRadioChange = (ev: React.ChangeEvent<HTMLInputElement>): void => {
