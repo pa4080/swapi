@@ -3,18 +3,13 @@ import { BsSearch as SearchIco, BsX } from "react-icons/bs";
 import { SwapiEndPoints as SwapiCats } from "../models";
 import { useSearchContext } from "../contexts/ContextProvider";
 import swapiSearch from "../helpers/swapiSearch";
+import SearchRadioCats from "./SearchRadioCats";
 
 interface Props {}
 
-const SearchForm: React.FC<Props> = ({}) => {
-  const {
-    searched,
-    setSearched,
-    searchResults,
-    setSearchResults,
-    searchCategory,
-    setSearchCategory
-  } = useSearchContext();
+const SearchForm: React.FC<Props> = () => {
+  const { searched, setSearched, searchResults, setSearchResults, searchCategory } =
+    useSearchContext();
 
   useEffect(() => {
     console.log(searchResults);
@@ -47,36 +42,6 @@ const SearchForm: React.FC<Props> = ({}) => {
     }
   };
 
-  const handleRadioChange = (ev: React.ChangeEvent<HTMLInputElement>): void => {
-    setSearchCategory(ev.target.value);
-  };
-
-  const renderRadioButtons: JSX.Element = ((): JSX.Element => {
-    const items: string[] = ["all"];
-
-    for (const key in SwapiCats) {
-      items.push(key);
-    }
-
-    return (
-      <div className="mt-4 text-md px-3 select-none">
-        {items.map((item, i) => (
-          <label key={i} className="inline-flex items-center scale-95">
-            <input
-              type="radio"
-              name={item}
-              id={item}
-              value={item}
-              checked={searchCategory === item}
-              onChange={handleRadioChange}
-            />
-            <span>{item} </span>
-          </label>
-        ))}
-      </div>
-    );
-  })();
-
   return (
     <form onSubmit={handleSearch} className="search-form my-4 sm:my-8 md:my-8 w-full">
       <div className="search-field relative drop-shadow-lg shadow-mlt-dark-1">
@@ -86,14 +51,15 @@ const SearchForm: React.FC<Props> = ({}) => {
             type="input"
             value={searched}
             onChange={(ev) => setSearched(ev.target.value)}
-            className="outline-none bg-mlt-dark-1 w-full py-3 px-10 rounded-l-full text-xl 
-            border-solid border border-mlt-dark-6 active:border-yellow-400 focus:border-yellow-400"
+            className="outline-none bg-mlt-dark-1 w-full 
+              py-3 px-10 rounded-l-full text-xl border-solid border 
+              border-mlt-dark-6 active:border-yellow-400 focus:border-yellow-400"
           />
           {searched ? (
             <div
-              className="absolute right-20 px-2 py-2 mr-1 text-3xl rounded-full 
-            hover:bg-mlt-dark-6 opacity-50"
               onClick={handleClearSearch}
+              className="absolute right-20 px-2 py-2 mr-1 text-3xl 
+                rounded-full hover:bg-mlt-dark-6 opacity-50"
             >
               <BsX />
             </div>
@@ -101,17 +67,18 @@ const SearchForm: React.FC<Props> = ({}) => {
             ""
           )}
         </div>
+
         <button
           type="submit"
-          className="absolute right-0 top-0 h-full rounded-r-full w-20 text-xl
-          bg-mlt-dark-4 text-yellow-400 border-solid border border-mlt-dark-6 border-l-0
-          focus-visible:outline outline-yellow-400"
+          className="absolute right-0 top-0 h-full w-20 rounded-r-full text-xl
+            border border-solid border-l-0 bg-mlt-dark-4 text-yellow-400 border-mlt-dark-6 
+            focus-visible:outline outline-yellow-400"
         >
           <SearchIco className="mx-auto" />
         </button>
       </div>
 
-      {renderRadioButtons}
+      <SearchRadioCats />
     </form>
   );
 };

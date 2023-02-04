@@ -3,7 +3,7 @@ import SearchForm from "./SearchForm";
 
 interface Props {}
 
-const Search: React.FC<Props> = ({}) => {
+const Search: React.FC<Props> = () => {
   return (
     <div className="search px-12 max-w-3xl">
       <h1
