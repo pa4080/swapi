@@ -1,12 +1,11 @@
 import React, { useRef } from "react";
-import { useSearchContext } from "../contexts/ContextProvider";
+import { useSearchContext } from "../contexts/SearchContextProvider";
 import { BsSearch as SearchIco, BsX } from "react-icons/bs";
 
 interface Props {}
 
 const SearchField: React.FC<Props> = () => {
-  const { searched, setSearched, searchResults, setSearchResults, searchCategory } =
-    useSearchContext();
+  const { searched, setSearched } = useSearchContext();
 
   const inputRef = useRef<HTMLInputElement>(null);
 

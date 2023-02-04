@@ -12,6 +12,7 @@ import {
   getSessionStorage,
   setSessionStorage
 } from "../helpers/browserStorage";
+import { loadingDisable, loadingEnable } from "../helpers/loadingEfects";
 import { SwapiSearchResult } from "../models";
 
 interface SearchContextType {
@@ -21,6 +22,8 @@ interface SearchContextType {
   setSearchResults: React.Dispatch<React.SetStateAction<SwapiSearchResult[]>>;
   searchCategory: string;
   setSearchCategory: React.Dispatch<React.SetStateAction<string>>;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SearchContext = createContext<SearchContextType>(null!);
@@ -47,7 +50,19 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (!searched) setSearchResults([]);
+    // If YES, fetch and display the results...
   }, []);
+
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (loading) loadingEnable();
+    else {
+      setTimeout(() => {
+        loadingDisable();
+      }, 800);
+    }
+  }, [loading]);
 
   return (
     <SearchContext.Provider
@@ -57,7 +72,9 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
         searchResults,
         setSearchResults,
         searchCategory,
-        setSearchCategory
+        setSearchCategory,
+        loading,
+        setLoading
       }}
     >
       {children}

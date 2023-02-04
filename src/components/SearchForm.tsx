@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { SwapiEndPoints as SwapiCats } from "../models";
-import { useSearchContext } from "../contexts/ContextProvider";
+import { useSearchContext } from "../contexts/SearchContextProvider";
 import swapiSearch from "../helpers/swapiSearch";
 import SearchRadioCats from "./SearchRadioCats";
 import SearchField from "./SearchField";
@@ -8,7 +8,7 @@ import SearchField from "./SearchField";
 interface Props {}
 
 const SearchForm: React.FC<Props> = () => {
-  const { searched, searchResults, setSearchResults, searchCategory } =
+  const { searched, searchResults, setSearchResults, searchCategory, setLoading } =
     useSearchContext();
 
   useEffect(() => {
@@ -25,12 +25,12 @@ const SearchForm: React.FC<Props> = () => {
     else cats.push(searchCategory);
 
     try {
-      // setLoading(true)
+      setLoading(true);
       const results = await swapiSearch(cats, searched);
       setSearchResults(results);
-      // setLoading(false)
+      setLoading(false);
     } catch (error) {
-      // setLoading(false)
+      setLoading(false);
       console.error(error);
     }
   };

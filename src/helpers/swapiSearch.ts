@@ -14,18 +14,11 @@ const swapiSearch = async (categories: string[], searched: string): Promise<Swap
     } catch (error) {
       console.error(error);
     }
-    /**
-    setLoading(true);
-    axiosClient.get(url)
-      .then(({ data }) => {
-        setSearchResults([...dataArray, data]);
-        setTimeout(() => { setLoading(false); }, 50);
-      })
-      .catch(() => { setLoading(false); });
-    */
   }
 
-  return searchDataArray.sort((a, b) => b.count - a.count);
+  return searchDataArray
+    .filter(cat => cat.count > 0)
+    .sort((a, b) => b.count - a.count);
 };
 
 export default swapiSearch;
