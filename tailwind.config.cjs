@@ -38,7 +38,9 @@ module.exports = {
         "mlt-blue-secondary": "#5d9fff",
         "mlt-purple-primary": "#9468D8",
         "mlt-purple-secondary": "#b07bff",
-        "mlt-yellow-primary": "#facc15"
+        "mlt-yellow-primary": "#facc15",
+        "mlt-yellow-secondary": "rgb(254 240 138)",
+        "mlt-yellow-tertiary": "rgb(254 249 195)"
       },
       fontSize: {
         "mlt-auto": "7.4vw"
@@ -46,7 +48,8 @@ module.exports = {
       fontFamily: {
         Starjout: ["Starjout", "normal"],
         Starjedi: ["Starjedi", "normal"],
-        Roboto: ["Roboto", "Arial", "sans-serif"]
+        Roboto: ["Roboto", "Arial", "sans-serif"],
+        Cairo: ["Cairo", "sans-serif"]
       }
     }
   },
