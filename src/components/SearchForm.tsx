@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { SwapiEndPoints as SwapiCats } from "../models";
+import { SwapiCats } from "../models";
 import { useSearchContext } from "../contexts/SearchContextProvider";
 import swapiSearch from "../helpers/swapiSearch";
 import SearchRadioCats from "./SearchRadioCats";

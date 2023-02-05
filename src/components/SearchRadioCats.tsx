@@ -1,6 +1,6 @@
 import React from "react";
 import { useSearchContext } from "../contexts/SearchContextProvider";
-import { SwapiEndPoints as SwapiCats } from "../models";
+import { SwapiCats } from "../models";
 
 interface Props {}
 
