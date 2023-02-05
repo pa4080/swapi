@@ -3,6 +3,9 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      maxWidth: {
+        "mlt-1xl": "39rem" // ~ 600px
+      },
       backgroundColor: {
         "mlt-gray-1": "#646464",
         "mlt-gray-2": "#787878",

@@ -22,7 +22,7 @@ const SearchField: React.FC<Props> = () => {
   };
 
   return (
-    <div className="search-field relative drop-shadow-lg shadow-mlt-dark-1">
+    <div id="SearchField" className="relative drop-shadow-lg shadow-mlt-dark-1">
       <div className="pr-20 relative flex items-center">
         <input
           ref={inputRef}
@@ -33,7 +33,7 @@ const SearchField: React.FC<Props> = () => {
               py-3 px-10 rounded-l-full text-xl border-solid border 
               border-mlt-dark-6 active:border-yellow-100 focus:border-yellow-400"
         />
-        <div className="absolute right-20 px-2 py-2 mr-1 text-3xl rounded-full hover:bg-mlt-dark-6 opacity-50">
+        <div className="absolute right-20 px-2 py-2 mr-1 text-3xl rounded-full hover:bg-mlt-dark-6 opacity-50 cursor-pointer">
           {searched ? (
             <div onClick={handleClearSearch}>
               <IcoX />
