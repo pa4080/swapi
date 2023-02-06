@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- <link rel="icon" type="image/x-icon" href="./favicon.ico"> -->
+    <link rel="icon" type="image/svg+xml" href="./mlt.favicon.orange.dark.svg" />
+    <title>HTTP 404</title>
+
+    <!-- <link rel="stylesheet" href="./404.css"> -->
+
+    <!-- <meta http-equiv="refresh" content="0; URL=./" /> -->
+
+    <!-- https://medium.com/swlh/how-to-host-your-angular-reactjs-vuejs-spa-on-github-pages-2d9ab102ac7b -->
+    <script>
+        const path = window.location.pathname.slice(1);
+        localStorage.setItem('path', path);
+        window.location.href = '../';
+    </script>
+</head>
+
+<body>
+    HTTP 404
+</body>
+
+</html>
