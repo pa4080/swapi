@@ -116,19 +116,19 @@ export type SwapiTypes = People & Starships & Planets & Films & Species & Vehicl
 export interface SwapiCategories {
     people: People;
     planets: Planets;
-    films: Films;
     species: Species;
     vehicles: Vehicles;
     starships: Starships;
+    films: Films;
 };
 
 export const SwapiCats: SwapiCategories = {
     people: <People>{},
     planets: <Planets>{},
-    films: <Films>{},
     species: <Species>{},
     vehicles: <Vehicles>{},
     starships: <Starships>{},
+    films: <Films>{},
 };
 
 export interface SwapiSearchResult {

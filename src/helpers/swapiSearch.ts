@@ -18,8 +18,13 @@ const swapiSearch =
 
     for (const category of categories) {
       try {
-        const resp = await axiosClient.get(uri(category));
-        searchDataArray.push({ ...resp.data, category });
+        // Get only the data property from the response
+        const { data } = await axiosClient.get(uri(category));
+
+        if (category === "films")
+          data.results.sort((a: any, b: any) => a.episode_id - b.episode_id);
+
+        searchDataArray.push({ ...data, category });
       } catch (error) {
         console.error(error);
       }

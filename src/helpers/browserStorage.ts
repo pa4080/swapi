@@ -1,6 +1,10 @@
 /**
+ * This module is deprecated.
+ * 
  * These functions are simplified and adapted version of the functionality of: 
  * > https://usehooks-ts.com/react-hook/use-local-storage
+ * 
+ * The original code is licensed under the MIT license.
  */
 function getLocalStorage<T>(storageKey: string, initValue: T): T {
     if (typeof window === "undefined") return initValue;

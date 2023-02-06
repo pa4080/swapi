@@ -46,6 +46,8 @@ interface SearchContextType {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isNewSession: boolean;
   setIsNewSession: React.Dispatch<React.SetStateAction<boolean>>;
+  selSrchEntry: string;
+  setSelSrchEntry: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const SearchContext = createContext<SearchContextType>({
@@ -57,7 +59,8 @@ const SearchContext = createContext<SearchContextType>({
   searchResults: [],
   searchCategory: "all",
   loading: false,
-  isNewSession: true
+  isNewSession: true,
+  selSrchEntry: ""
 });
 
 interface Props {
@@ -99,6 +102,13 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
     // The 'else' stat. is moved to useEffect(cb, [searchResults])
   }, [loading]);
 
+  const [selSrchEntry, setSelSrchEntry] = useState<string>(
+    getSessionStorage("SS_SELECTED_SEARCH_ENTRY", "")
+  );
+  useEffect(setSessionStorage.bind(this, "SS_SELECTED_SEARCH_ENTRY", selSrchEntry), [
+    selSrchEntry
+  ]);
+
   return (
     <SearchContext.Provider
       value={{
@@ -111,7 +121,9 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
         loading,
         setLoading,
         isNewSession,
-        setIsNewSession
+        setIsNewSession,
+        selSrchEntry,
+        setSelSrchEntry
       }}
     >
       {children}

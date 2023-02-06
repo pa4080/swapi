@@ -38,6 +38,8 @@
   color: theme('colors.mlt-gray-6');
   background-color: theme('colors.mlt-dark-2');
 
+  user-select: none;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -172,7 +174,8 @@ body,
 }
 
 *::-webkit-scrollbar-track {
-  background: theme('colors.mlt-dark-2');
+  /* background: theme('colors.mlt-dark-2'); */
+  background: transparent;
 
 }
 
@@ -180,7 +183,6 @@ body,
   background: theme('colors.mlt-gray-2');
   border: 5px solid theme('colors.mlt-dark-2');
   border-radius: 12px;
-
   z-index: 10;
 }
 
@@ -207,13 +209,16 @@ body,
   text-shadow: 0 2px 12px theme('colors.mlt-dark-1');
 }
 
-
-#search-box:hover #search-field {
-  --tw-drop-shadow: drop-shadow(0 10px 8px rgb(0 0 0 / 60%)) drop-shadow(0 4px 3px rgb(0 0 0 / 30%));
-  transition: filter 0.5s ease-in-out;
+#Search_Header:hover #SearchField {
+  /* --tw-drop-shadow: drop-shadow(0 10px 8px rgb(0 0 0 / 60%)) drop-shadow(0 4px 3px rgb(0 0 0 / 30%)); */
+  /* --tw-drop-shadow: drop-shadow(0 10px 8px theme('colors.mlt-dark-1')) drop-shadow(0 4px 3px theme('colors.mlt-dark-1')); */
+  /* --tw-drop-shadow: drop-shadow(0 6px 8px theme('colors.mlt-dark-1')) drop-shadow(0 4px 6px theme('colors.mlt-dark-1')); */
+  /* --tw-drop-shadow: drop-shadow(0 4px 6px theme('colors.mlt-dark-1')) drop-shadow(0 2px 4px theme('colors.mlt-dark-1')); */
+  --tw-drop-shadow: drop-shadow(0 4px 6px theme('colors.mlt-dark-0')) drop-shadow(0 2px 4px theme('colors.mlt-dark-0'));
+  transition: filter 0.3s ease-in-out;
 }
 
-#search-field {
+#SearchField {
   transition: filter 0.5s ease-in-out;
 }
 
@@ -288,4 +293,30 @@ body.loading-show #root {
 #root {
   /* z-index: 5; */
   transition: opacity 0.4s ease-in-out, filter 0.4s ease-in-out;
+}
+
+/**
+ * Categories within the search results
+ */
+.category-single+.category-single {
+  margin-top: 2rem;
+}
+
+.category-single {
+  background-color: theme('colors.mlt-dark-2');
+}
+
+.category-single:hover {
+  /* filter: drop-shadow(0 6px 8px theme('colors.mlt-dark-1')) drop-shadow(0 4px 6px theme('colors.mlt-dark-1')); */
+  filter: drop-shadow(0 4px 6px theme('colors.mlt-dark-0')) drop-shadow(0 2px 4px theme('colors.mlt-dark-0'));
+}
+
+.category-single,
+.category-entry {
+  transition: filter 0.5s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.category-single:hover,
+.category-entry:hover {
+  transition: filter 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }

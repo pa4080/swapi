@@ -3,7 +3,7 @@ import { SwapiCats } from "../models";
 import { useSearchContext } from "../contexts/SearchContextProvider";
 import swapiSearch from "../helpers/swapiSearch";
 import SearchRadioCats from "./SearchRadioCats";
-import SearchField from "./SearchField";
+import SearchField from "./SearchInput";
 
 interface Props {}
 
@@ -41,7 +41,7 @@ const SearchForm: React.FC<Props> = () => {
     <form
       ref={formRef}
       onSubmit={handleSearch}
-      className="search-form mt-4 mb-4 sm:mt-8 sm:mb-4 w-full px-2"
+      className="search-form mt-4 mb-4 sm:mt-8 sm:mb-4 w-full px-6 md:px-2"
     >
       <SearchField />
       <SearchRadioCats />

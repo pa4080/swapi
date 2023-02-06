@@ -16,9 +16,12 @@ const SearchRadioCats: React.FC<Props> = () => {
   };
 
   return (
-    <div className="mt-4 text-md pl-2 pr-2 select-none">
+    <div
+      id="SearchRadioCats"
+      className="mt-4 select-none md:text-center text-md px-4 md:px-0"
+    >
       {cats.map((cat, i) => (
-        <label key={i} className="inline-flex items-center scale-95">
+        <label key={i} className="inline-flex items-center">
           <input
             type="radio"
             name={cat}

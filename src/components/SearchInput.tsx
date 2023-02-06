@@ -30,20 +30,25 @@ const SearchField: React.FC<Props> = () => {
           value={searched}
           onChange={(ev) => setSearched(ev.target.value)}
           className="outline-none bg-mlt-dark-1 w-full 
-              py-3 px-10 rounded-l-full text-xl border-solid border 
+              py-3 px-10 rounded-l-full text-md md:text-xl border-solid border 
               border-mlt-dark-6 active:border-yellow-100 focus:border-yellow-400"
         />
-        <div className="absolute right-20 px-2 py-2 mr-1 text-3xl rounded-full hover:bg-mlt-dark-6 opacity-50 cursor-pointer">
-          {searched ? (
-            <div onClick={handleClearSearch}>
-              <IcoX />
-            </div>
-          ) : (
-            <div onClick={handleEnterSuggestion}>
-              <IcoEnter />
-            </div>
-          )}
-        </div>
+
+        {searched ? (
+          <div
+            className="absolute right-20 px-2 py-2 mr-1 text-3xl rounded-full hover:bg-mlt-dark-6 opacity-50 cursor-pointer"
+            onClick={handleClearSearch}
+          >
+            <IcoX />
+          </div>
+        ) : (
+          <div
+            className="absolute right-20 px-2 py-2 mr-1 text-3xl rounded-full hover:bg-mlt-dark-6 opacity-50 cursor-pointer"
+            onClick={handleEnterSuggestion}
+          >
+            <IcoEnter />
+          </div>
+        )}
       </div>
 
       <button

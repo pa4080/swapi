@@ -12,12 +12,14 @@
     "predeploy",
     "Roboto",
     "Skywalker",
+    "Srch",
     "Starjedi",
     "Starjout",
     "starships",
     "SWAPI",
     "tailwindcss",
-    "todos"
+    "todos",
+    "usehooks"
   ],
   "spellright.language": ["en-US-10-1.", "en-US-9-0."],
   "markdownlint.config": {

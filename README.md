@@ -18,6 +18,14 @@ SWAPI (Star Wars API) Search App with ReactJs and Typescript Exercise.
 
 - [Font Converter](https://cloudconvert.com/ttf-converter)
 
+- [`UseHooks-TS`](https://usehooks-ts.com/) a React hooks library, ready to use, written in typescript.
+
+## Notes
+
+- To handle the pagination of search results per category, I just need to modify/replace the relevant object in the `searchResults` state.
+- Invalidate selected search entry on new search?!?
+- I should set browser's state instead using local storage, thus I can use the browser's back button to go back to the previous state and read the last state on page reload...
+
 ## Setup the Project
 
 <details>
@@ -32,6 +40,7 @@ npm create vite@latest
 cd exc-ts-react-star-wars/
 npm install
 npm i react-router-dom axios dompurify @types/dompurify
+npm i usehooks-ts
 ```
 
 - Create start command in [`package.json`](package.json) file as follows:
