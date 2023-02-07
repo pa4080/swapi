@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaGithub as Github, FaYinYang } from "react-icons/fa";
+import { FaGithub as Github, FaYinYang, FaJedi } from "react-icons/fa";
 import { getLocalStorage, setLocalStorage } from "../helpers/browserStorage";
 
 interface Props {}
@@ -36,9 +36,9 @@ const Footer: React.FC<Props> = (props) => {
 
       <span onClick={setApiInUse} className="switch-api-closure text-mlt-gray-3 ">
         <div className="switch-api-button hover:scale-125 px-3 py-3 transition-transform duration-300 cursor-pointer">
-          <FaYinYang
+          <FaJedi
             className={`text-3xl transition-transform duration-300 ${
-              apiInUse === defaultApi ? "rotate-0" : "rotate-180"
+              apiInUse === defaultApi ? "rotate-0" : "rotate-90"
             }`}
           />
         </div>

@@ -23,7 +23,6 @@ SWAPI (Star Wars API) Search App with ReactJs and Typescript Exercise.
 ## Notes
 
 - To handle the pagination of search results per category, I just need to modify/replace the relevant object in the `searchResults` state.
-- Implement auto font resize of the title depending on the container width, on load and on window width change - [ref](https://github.com/metalevel-tech/exc-js-promises-typewriter/blob/master/app/public/main-two-speed-params.js#L375).
 - Invalidate selected search entry on new search?!?
 - I should set browser's state instead using local storage, thus I can use the browser's back button to go back to the previous state and read the last state on page reload...
 

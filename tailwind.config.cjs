@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       maxWidth: {
-        "mlt-1xl": "39rem" // ~ 600px
+        "mlt-1xl": "624px" // ~ 600px
       },
       backgroundColor: {
         "mlt-gray-1": "#646464",
@@ -48,13 +48,17 @@ module.exports = {
         "mlt-yellow-tertiary": "rgb(254 249 195)"
       },
       fontSize: {
-        "mlt-auto": "7.4vw"
+        "mlt-auto-1": "8.3vw",
+        "mlt-4xl-plus": "2.6rem"
       },
       fontFamily: {
         Starjout: ["Starjout", "normal"],
         Starjedi: ["Starjedi", "normal"],
         Roboto: ["Roboto", "Arial", "sans-serif"],
         Cairo: ["Cairo", "sans-serif"]
+      },
+      spacing: {
+        "mlt-1-plus": "8px"
       }
     }
   },

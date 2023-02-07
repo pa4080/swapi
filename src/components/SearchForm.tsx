@@ -3,11 +3,19 @@ import { SwapiCats } from "../models";
 import { useSearchContext } from "../contexts/SearchContextProvider";
 import swapiSearch from "../helpers/swapiSearch";
 import SearchRadioCats from "./SearchRadioCats";
-import SearchField from "./SearchInput";
+import SearchInput from "./SearchInput";
 
-interface Props {}
+interface Props {
+  formStyle?: string;
+  inputStyle?: string;
+  radioStyle?: string;
+}
 
-const SearchForm: React.FC<Props> = () => {
+const SearchForm: React.FC<Props> = ({
+  formStyle = " mt-6 sm:mt-8",
+  inputStyle,
+  radioStyle
+}) => {
   const { searched, setSearchResults, searchCategory, setLoading } = useSearchContext();
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -42,10 +50,10 @@ const SearchForm: React.FC<Props> = () => {
       id="SearchForm"
       ref={formRef}
       onSubmit={handleSearch}
-      className="w-full mt-6 sm:mt-8 "
+      className={`w-full ${formStyle}`}
     >
-      <SearchField />
-      <SearchRadioCats />
+      <SearchInput inputStyle={inputStyle} />
+      <SearchRadioCats radioStyle={radioStyle} />
     </form>
   );
 };

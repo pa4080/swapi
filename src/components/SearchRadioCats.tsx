@@ -2,9 +2,13 @@ import React from "react";
 import { useSearchContext } from "../contexts/SearchContextProvider";
 import { SwapiCats } from "../models";
 
-interface Props {}
+interface Props {
+  radioStyle?: string;
+}
 
-const SearchRadioCats: React.FC<Props> = () => {
+const SearchRadioCats: React.FC<Props> = ({
+  radioStyle = "sm:text-center sm:px-0"
+}) => {
   const { searchCategory, setSearchCategory } = useSearchContext();
 
   const cats: string[] = ["all"];
@@ -16,10 +20,7 @@ const SearchRadioCats: React.FC<Props> = () => {
   };
 
   return (
-    <div
-      id="SearchRadioCats"
-      className="mt-4 select-none md:text-center text-md px-4 md:px-0"
-    >
+    <div id="SearchRadioCats" className={`mt-4 select-none text-md px-4 ${radioStyle}`}>
       {cats.map((cat, i) => (
         <label key={i} className="inline-flex items-center">
           <input

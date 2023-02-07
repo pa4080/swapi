@@ -70,7 +70,7 @@
 }
 
 /**
- * Main Layout
+ * Common Layout
  */
 html,
 body {
@@ -89,7 +89,10 @@ body,
   height: 100%;
 }
 
-.mlt-flex-container {
+/**
+ * Centered Layout
+ */
+.mlt-flex-centered {
   height: 100%;
   width: 100%;
 
@@ -99,7 +102,7 @@ body,
   flex-direction: column;
 }
 
-.mlt-header {
+.mlt-flex-centered-header {
   /* rgb(255 255 255 / 7%) */
   /* background-color: theme('colors.mlt-dark-3'); */
   box-shadow: 0px 8px 8px -3px theme('colors.mlt-dark-2');
@@ -108,9 +111,10 @@ body,
   height: max-content;
   height: fit-content;
   height: -moz-fit-content;
+
 }
 
-.mlt-footer {
+.mlt-flex-centered-footer {
   /* background-color: theme('colors.mlt-dark-3'); */
   box-shadow: 0px -8px 8px -3px theme('colors.mlt-dark-2');
   z-index: 10;
@@ -131,10 +135,9 @@ body,
 .mlt-footer-inner {
   display: inline-flex;
   position: relative;
-  width: min-content;
 }
 
-.mlt-content {
+.mlt-flex-centered-content {
   overflow-x: hidden;
   /* overflow-y: auto; */
   overflow-y: overlay;
@@ -147,10 +150,92 @@ body,
   transition: height 1.5s ease-in-out;
 }
 
-.mlt-content:empty,
-.mlt-content-inner:empty {
+.mlt-flex-centered-content:empty,
+.mlt-flex-centered-content-inner:empty {
   height: 0;
   display: none;
+}
+
+/**
+ * Main Layout
+ */
+
+.mlt-grid-main {
+  display: grid;
+  grid-template-columns: fit-content(30rem) 1fr;
+  grid-template-rows: 1fr fit-content(80px);
+
+  grid-template-areas:
+    "left right"
+    "footer footer";
+
+  width: 100vw;
+  height: 100vh;
+}
+
+.mlt-grid-main-left {
+  grid-area: left;
+  box-shadow: 8px 0px 8px -3px #242424;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mlt-grid-main-left-content {
+  overflow-x: hidden;
+  overflow-y: overlay;
+  height: -moz-max-content;
+  height: max-content;
+  height: fit-content;
+  height: -moz-fit-content;
+  transition: height 1.5s ease-in-out;
+  width: 100%;
+}
+
+.mlt-grid-main-right {
+  grid-area: right;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+  position: relative;
+
+}
+
+.mlt-grid-main-right::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgb(255 255 255 / 2%); */
+  background-image: url("./assets/images/star-wars-cover-2.webp");
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: auto 100%;
+  z-index: -1;
+}
+
+.mlt-grid-main-footer {
+  grid-area: footer;
+  box-shadow: 0px -8px 8px -3px theme('colors.mlt-dark-2');
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  z-index: 10;
+
+  height: max-content;
+  height: fit-content;
+  height: -moz-fit-content;
 }
 
 /**
@@ -267,14 +352,15 @@ body.loading-show #root {
   text-shadow: 0 2px 12px theme('colors.mlt-dark-0');
 }
 
-#TitleSearchBox:hover #SearchField {
+.search-input-box:hover .search-input-field {
   /* --tw-drop-shadow: drop-shadow(0 10px 8px rgb(0 0 0 / 60%)) drop-shadow(0 4px 3px rgb(0 0 0 / 30%)); */
   /* --tw-drop-shadow: drop-shadow(0 4px 6px theme('colors.mlt-dark-0')) drop-shadow(0 2px 4px theme('colors.mlt-dark-0')); */
   --tw-drop-shadow: drop-shadow(0 4px 8px rgba(8, 8, 8, 0.6)) drop-shadow(0 2px 4px rgba(8, 8, 8, 0.6));
+  /* --tw-drop-shadow: drop-shadow(0 4px 8px red) drop-shadow(0 2px 4px rgba(8, 8, 8, 0.6)); */
   transition: filter 0.3s ease-in-out;
 }
 
-#SearchField {
+.search-input-field {
   transition: filter 0.5s ease-in-out;
 }
 

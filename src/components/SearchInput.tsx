@@ -3,9 +3,11 @@ import { useSearchContext } from "../contexts/SearchContextProvider";
 import { BsSearch as IcoSearch, BsX as IcoX } from "react-icons/bs";
 import { RxEnter as IcoEnter } from "react-icons/rx";
 
-interface Props {}
+interface Props {
+  inputStyle?: string;
+}
 
-const SearchField: React.FC<Props> = () => {
+const SearchInput: React.FC<Props> = ({ inputStyle = "text-md sm:text-xl" }) => {
   const { searched, setSearched } = useSearchContext();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -22,16 +24,20 @@ const SearchField: React.FC<Props> = () => {
   };
 
   return (
-    <div id="SearchField" className="relative drop-shadow-lg shadow-mlt-dark-1">
+    <div
+      id="SearchInput"
+      className="search-input-field relative drop-shadow-lg shadow-mlt-dark-1"
+    >
       <div className="pr-20 relative flex items-center">
         <input
           ref={inputRef}
           type="input"
           value={searched}
           onChange={(ev) => setSearched(ev.target.value)}
-          className="outline-none bg-mlt-dark-1 w-full 
-              py-3 px-10 rounded-l-full text-md md:text-xl border-solid border 
-              border-mlt-dark-6 active:border-yellow-100 focus:border-yellow-400"
+          className={`outline-none bg-mlt-dark-1 w-full 
+              py-3 px-10 rounded-l-full border-solid border border-mlt-dark-6
+               active:border-yellow-100 focus:border-yellow-400
+               ${inputStyle}`}
         />
 
         {searched ? (
@@ -64,4 +70,4 @@ const SearchField: React.FC<Props> = () => {
   );
 };
 
-export default SearchField;
+export default SearchInput;

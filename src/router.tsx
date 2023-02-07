@@ -2,8 +2,8 @@ import React from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import SearchResults from "./components/SearchResults";
 import Centered from "./layouts/Centered";
-import LeftRight from "./layouts/LeftRight";
-import People from "./views/People";
+import LeftRight from "./layouts/Main";
+import EntryHandler from "./components/EntryHandler";
 
 const router = createBrowserRouter([
   {
@@ -17,10 +17,6 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <SearchResults />
-      },
-      {
-        path: "/people/:id",
-        element: <People />
       }
     ]
   },
@@ -33,8 +29,8 @@ const router = createBrowserRouter([
         element: <Navigate to="/search" />
       },
       {
-        path: "/people/:id",
-        element: <People />
+        path: "/:cat/:id",
+        element: <EntryHandler />
       }
     ]
   },

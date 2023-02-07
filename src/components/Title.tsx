@@ -1,14 +1,17 @@
 import React from "react";
-
 interface Props {
   title?: string;
+  titleStyle?: string;
 }
 
-const Title: React.FC<Props> = ({ title = "=Star Searches+" }) => {
+const Title: React.FC<Props> = ({
+  title = "=Star Searches+",
+  titleStyle = "text-mlt-auto-1 sm:text-6xl"
+}) => {
   return (
     <h1
       id="Title"
-      className="font-Starjedi text-yellow-400 w-full text-center select-none text-mlt-auto sm:text-5xl md:text-6xl title-shadow-mlt-dark-0"
+      className={`font-Starjedi text-yellow-400 w-full text-center select-none  title-shadow-mlt-dark-0 ${titleStyle}`}
     >
       {title}
     </h1>

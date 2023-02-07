@@ -1,4 +1,5 @@
 export interface People {
+    category: string;   // originally doesn't exist
     name: string;
     height: string;
     mass: string;
@@ -18,6 +19,7 @@ export interface People {
 };
 
 export interface Planets {
+    category: string;   // originally doesn't exist
     name: string;
     rotation_period: string;
     orbital_period: string;
@@ -35,6 +37,7 @@ export interface Planets {
 };
 
 export interface Starships {
+    category: string;   // originally doesn't exist
     name: string;
     model: string;
     manufacturer: string;
@@ -56,6 +59,7 @@ export interface Starships {
 };
 
 export interface Films {
+    category: string;   // originally doesn't exist
     title: string;
     episode_id: number;
     opening_crawl: string;
@@ -73,6 +77,7 @@ export interface Films {
 };
 
 export interface Species {
+    category: string;   // originally doesn't exist
     name: string;
     classification: string;
     designation: string;
@@ -91,6 +96,7 @@ export interface Species {
 };
 
 export interface Vehicles {
+    category: string;   // originally doesn't exist
     name: string;
     model: string;
     manufacturer: string;

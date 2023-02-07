@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useSearchContext } from "../contexts/SearchContextProvider";
 import { SwapiTypes } from "../models";
 
@@ -12,14 +13,14 @@ const SearchResultsEntry: React.FC<Props> = ({ entry, catName }) => {
   const { selSrchEntry, setSelSrchEntry } = useSearchContext();
   const entryId = `${catName}-${(title ?? name).replace(/ /g, "-").toLowerCase()}`;
 
+  const navigate = useNavigate();
+
   const handleOnClick = (ev: React.MouseEvent, url: string): void => {
     if (ev.currentTarget.tagName === "SPAN") ev.stopPropagation();
-
     const targetPage: string = url.replace(/^https?:.*?api\//, "/");
-
-    console.log(targetPage);
-
+    // console.log("SearchResultsEntry.tsx", targetPage, entryId);
     setSelSrchEntry(entryId);
+    navigate(targetPage);
   };
 
   const filmId = (url: string): number => {
