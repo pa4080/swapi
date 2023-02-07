@@ -10,7 +10,7 @@ const SearchResults: React.FC<Props> = () => {
   return (
     <>
       {searchResults.length ? (
-        <div id="SearchResults" className="mlt-content-inner pl-2 py-5">
+        <div id="SearchResults" className="mlt-content-inner py-5">
           {searchResults.map((cat, i) => (
             <SearchResultsCat key={i} cat={cat} />
           ))}

@@ -39,9 +39,10 @@ const SearchForm: React.FC<Props> = () => {
 
   return (
     <form
+      id="SearchForm"
       ref={formRef}
       onSubmit={handleSearch}
-      className="search-form mt-4 mb-4 sm:mt-8 sm:mb-4 w-full px-6 md:px-2"
+      className="w-full mt-6 sm:mt-8 "
     >
       <SearchField />
       <SearchRadioCats />

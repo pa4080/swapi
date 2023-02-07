@@ -23,6 +23,7 @@ SWAPI (Star Wars API) Search App with ReactJs and Typescript Exercise.
 ## Notes
 
 - To handle the pagination of search results per category, I just need to modify/replace the relevant object in the `searchResults` state.
+- Implement auto font resize of the title depending on the container width, on load and on window width change - [ref](https://github.com/metalevel-tech/exc-js-promises-typewriter/blob/master/app/public/main-two-speed-params.js#L375).
 - Invalidate selected search entry on new search?!?
 - I should set browser's state instead using local storage, thus I can use the browser's back button to go back to the previous state and read the last state on page reload...
 
@@ -91,3 +92,20 @@ git push -u origin master
 - [Deploy to GitHub Pages and Automate with GitHub Actions](https://github.com/metalevel-tech/exc-js-react-tic-tac-toe#deploy-to-github-pages-with-github-actions)
 
 </details>
+
+## Shell helpers
+
+PNG > WebP conversion:
+
+```bash
+FILE="Input_image.png"
+convert "$FILE" -quality 80 -strip -define webp:lossless=true -define webp:method=4 "${FILE%.*}_80.webp"
+convert "$FILE" -quality 70 -strip -define webp:lossless=false -define webp:method=4 "${FILE%.*}_70.webp"
+```
+
+SVG > ICO conversion:
+
+```bash
+FILE="Input_image.svg"
+convert -background transparent "$FILE" -clone 0 -resize 32x32  favicon.ico
+```
