@@ -42,6 +42,9 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "files.associations": {
+    ".git/**/*": "plaintext"
+  },
 
   "typescript.validate.enable": true,
   "typescript.disableAutomaticTypeAcquisition": true,

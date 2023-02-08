@@ -34,10 +34,10 @@ SWAPI (Star Wars API) Search App with ReactJs and Typescript Exercise.
 
 ```bash
 npm create vite@latest
-# ✔ Project name: … exc-ts-react-star-wars
+# ✔ Project name: … prj-ts-react-swapi
 # ✔ Select a framework: › React
 # ✔ Select a variant: › TypeScript
-cd exc-ts-react-star-wars/
+cd prj-ts-react-swapi/
 npm install
 npm i react-router-dom axios dompurify @types/dompurify
 npm i usehooks-ts
@@ -82,7 +82,7 @@ git init
 git add -A
 git commit -m "Initial commit"
 git branch -M master
-git remote add origin git@github.com:metalevel-tech/exc-ts-react-star-wars.git
+git remote add origin git@github.com:metalevel-tech/prj-ts-react-swapi.git
 git push -u origin master
 ```
 
