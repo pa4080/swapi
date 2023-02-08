@@ -90,6 +90,10 @@ git push -u origin master
 
 - [Deploy to GitHub Pages and Automate with GitHub Actions](https://github.com/metalevel-tech/exc-js-react-tic-tac-toe#deploy-to-github-pages-with-github-actions)
 
+- [Deploying by `gh-pages` seems to overwrite custom domain](https://github.com/tschaub/gh-pages/issues/213) | [`gh-pages -d dist` overwrites custom domain](https://github.com/tschaub/gh-pages/issues/127)
+
+- [Vite: Building for production](https://vitejs.dev/guide/build.html#public-base-path)
+
 </details>
 
 ## Shell helpers
