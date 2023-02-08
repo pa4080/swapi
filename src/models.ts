@@ -8,14 +8,15 @@ export interface People {
     eye_color: string;
     birth_year: string;
     gender: string;
-    homeworld: string;
-    films: string[];
+    homeworld: string | JSX.Element;
+    films: string[] | JSX.Element[];
     species: string[];
     vehicles: string[];
     starships: string[];
     created: string;
     edited: string;
     url: string;
+    [key: string]: any;
 };
 
 export interface Planets {
@@ -29,11 +30,12 @@ export interface Planets {
     terrain: string;
     surface_water: string;
     population: string;
-    residents: string[];
-    films: string[];
+    residents: string[] | JSX.Element[];
+    films: string[] | JSX.Element[];
     created: string;
     edited: string;
     url: string;
+    [key: string]: any;
 };
 
 export interface Starships {
@@ -52,10 +54,11 @@ export interface Starships {
     MGLT: string;
     starship_class: string;
     pilots: string[];
-    films: string[];
+    films: string[] | JSX.Element[];
     created: string;
     edited: string;
     url: string;
+    [key: string]: any;
 };
 
 export interface Films {
@@ -74,6 +77,7 @@ export interface Films {
     created: string;
     edited: string;
     url: string;
+    [key: string]: any;
 };
 
 export interface Species {
@@ -86,13 +90,14 @@ export interface Species {
     hair_colors: string;
     eye_colors: string;
     average_lifespan: string;
-    homeworld: string;
+    homeworld: string | JSX.Element;
     language: string;
     people: string[];
-    films: string[];
+    films: string[] | JSX.Element[];
     created: string;
     edited: string;
     url: string;
+    [key: string]: any;
 };
 
 export interface Vehicles {
@@ -109,10 +114,11 @@ export interface Vehicles {
     consumables: string;
     vehicle_class: string;
     pilots: string[];
-    films: string[];
+    films: string[] | JSX.Element[];
     created: string;
     edited: string;
     url: string;
+    [key: string]: any;
 };
 
 // This is a workaround (see: {result?.title ?? result?.name} in SearchResultsCats.tsx),

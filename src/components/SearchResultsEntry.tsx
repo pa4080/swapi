@@ -53,9 +53,9 @@ const SearchResultsEntry: React.FC<Props> = ({ entry, catName }) => {
               ? films.map((url, i, arr) => (
                   <span key={i}>
                     <span
-                      onClick={(ev) => handleOnClick(ev, url)}
+                      onClick={(ev) => handleOnClick(ev, String(url))}
                       className="relative hover:underline"
-                    >{`${filmId(url)}`}</span>
+                    >{`${filmId(String(url))}`}</span>
                     {`${i === arr.length - 1 ? "" : ", "}`}
                   </span>
                 ))

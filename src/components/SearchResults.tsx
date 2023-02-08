@@ -4,7 +4,7 @@ import SearchResultsCat from "./SearchResultsCat";
 
 interface Props {}
 
-const SearchResults: React.FC<Props> = () => {
+const SearchResults: React.FC<Props> = (props) => {
   const { searchResults, isNewSession } = useSearchContext();
 
   return (

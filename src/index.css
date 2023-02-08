@@ -89,6 +89,10 @@ body,
   height: 100%;
 }
 
+pre {
+  white-space: pre-line;
+}
+
 /**
  * Centered Layout
  */
@@ -198,13 +202,24 @@ body,
 
 .mlt-grid-main-right {
   grid-area: right;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-content: flex-start;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* flex-direction: column; */
+  /* justify-content: flex-start; */
+  /* align-content: flex-start; */
   position: relative;
+  overflow-y: overlay;
+  overflow-x: hidden;
+  min-width: 420px;
+}
 
+.mlt-grid-main-right .entry-container {
+  max-width: 768px;
+  hyphens: auto;
+}
+
+.entry-container a:hover {
+  text-decoration: underline;
 }
 
 .mlt-grid-main-right::after {

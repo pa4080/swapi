@@ -9,14 +9,14 @@
  * later the functions of browserStorage.ts could be transformed to a useStorage() hook.
  */
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { SwapiSearchResult } from "../models";
+import { loadingDisable, loadingEnable } from "../helpers/loadingEffects";
 import {
   getLocalStorage,
   setLocalStorage,
   getSessionStorage,
   setSessionStorage
 } from "../helpers/browserStorage";
-import { loadingDisable, loadingEnable } from "../helpers/loadingEffects";
-import { SwapiSearchResult } from "../models";
 
 /*
  * We may need to maintain state for each category

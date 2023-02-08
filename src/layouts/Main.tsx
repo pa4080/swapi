@@ -2,7 +2,6 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
-import { useSearchContext } from "../contexts/SearchContextProvider";
 import Title from "../components/Title";
 import Footer from "../components/Footer";
 
@@ -28,7 +27,7 @@ const Main: React.FC<Props> = (props) => {
           </div>
         </div>
 
-        <div className="mlt-grid-main-right  px-8 py-9">
+        <div className="mlt-grid-main-right px-8 py-6">
           <Outlet />
         </div>
 

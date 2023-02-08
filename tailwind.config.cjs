@@ -58,7 +58,9 @@ module.exports = {
         Cairo: ["Cairo", "sans-serif"]
       },
       spacing: {
-        "mlt-1-plus": "8px"
+        "mlt-1-plus": "8px",
+        "mlt-22": "5.5rem",
+        "mlt-26": "6.5rem"
       }
     }
   },

@@ -3,7 +3,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import SearchResults from "./components/SearchResults";
 import Centered from "./layouts/Centered";
 import LeftRight from "./layouts/Main";
-import EntryHandler from "./components/EntryHandler";
+import EntryDispatcher from "./components/EntryDispatcher";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/:cat/:id",
-        element: <EntryHandler />
+        element: <EntryDispatcher />
       }
     ]
   },
