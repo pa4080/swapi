@@ -5,38 +5,45 @@ import Centered from "./layouts/Centered";
 import LeftRight from "./layouts/Main";
 import EntryHandler from "./components/EntryHandler";
 
+/**
+ * This is a hack for GitHub pages:
+ * > ${import.meta.env.BASE_URL} replaces the slash "/"
+ * > See the "build" and "predeploy" commands in package.json
+ * > https://vitejs.dev/guide/build.html#public-base-path
+ */
+
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: `${import.meta.env.BASE_URL}`,
     element: <Centered />,
     children: [
       {
-        path: "/",
-        element: <Navigate to="/search" />
+        path: `${import.meta.env.BASE_URL}`,
+        element: <Navigate to={`${import.meta.env.BASE_URL}search`} />
       },
       {
-        path: "/search",
+        path: `${import.meta.env.BASE_URL}search`,
         element: <SearchResults />
       }
     ]
   },
   {
-    path: "/",
+    path: `${import.meta.env.BASE_URL}`,
     element: <LeftRight />,
     children: [
       {
-        path: "/",
-        element: <Navigate to="/search" />
+        path: `${import.meta.env.BASE_URL}`,
+        element: <Navigate to={`${import.meta.env.BASE_URL}search`} />
       },
       {
-        path: "/:cat/:id",
+        path: `${import.meta.env.BASE_URL}:cat/:id`,
         element: <EntryHandler />
       }
     ]
   },
   {
     path: "*", // Handle HTTP 404
-    element: <Navigate to="/search" />
+    element: <Navigate to={`${import.meta.env.BASE_URL}search`} />
   }
 ]);
 
