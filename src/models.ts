@@ -61,25 +61,6 @@ export interface Starships {
     [key: string]: any;
 };
 
-export interface Films {
-    category: string;   // originally doesn't exist
-    title: string;
-    episode_id: number;
-    opening_crawl: string;
-    director: string;
-    producer: string;
-    release_date: string;
-    characters: string[];
-    planets: string[];
-    starships: string[];
-    vehicles: string[];
-    species: string[];
-    created: string;
-    edited: string;
-    url: string;
-    [key: string]: any;
-};
-
 export interface Species {
     category: string;   // originally doesn't exist
     name: string;
@@ -115,6 +96,25 @@ export interface Vehicles {
     vehicle_class: string;
     pilots: string[];
     films: string[] | JSX.Element[];
+    created: string;
+    edited: string;
+    url: string;
+    [key: string]: any;
+};
+
+export interface Films {
+    category: string;   // originally doesn't exist
+    title: string;
+    episode_id: number;
+    opening_crawl: string;
+    director: string;
+    producer: string;
+    release_date: string;
+    characters: string[];
+    planets: string[];
+    starships: string[];
+    vehicles: string[];
+    species: string[];
     created: string;
     edited: string;
     url: string;

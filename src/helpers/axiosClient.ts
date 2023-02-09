@@ -26,8 +26,14 @@ const axiosClient: AxiosInstance = axios.create({
 
 axiosClient.interceptors.request.use(
 	(config) => {
+		// console.log(`Axios fetch: ${config.baseURL}`);
+
+		const counter = document.getElementById("api-hits-counter")?.querySelector("span");
+		if (counter) {
+			counter.innerHTML = (parseInt(counter.innerHTML) + 1).toString();
+		}
+
 		config.baseURL = `${getLocalStorage("SS_API", import.meta.env.VITE_API_DEFAULT)}/api/`;
-		console.log(`Axios fetch: ${config.baseURL}`);
 		return config;
 	},
 	(error) => Promise.reject(error)

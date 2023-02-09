@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { EntryStyles } from "./EntryFactory";
-import { capitalize } from "./EntryFactory";
+import {
+  capitalize,
+  composeSuffix,
+  EntryStyles,
+  numberWithCommas
+} from "./EntryFactoryHelpers";
 
 interface Props {
   name: string;
@@ -9,36 +13,13 @@ interface Props {
 }
 
 const EntryField: React.FC<Props> = ({ name, value, styles }) => {
-  const suffix: string = ((): string => {
-    switch (name.toLowerCase()) {
-      case "height":
-        return " cm";
-      case "mass":
-        return " kg";
-      case "cargo_capacity":
-        return " kg";
-      case "length":
-        return " m";
-      case "cost_in_credits":
-        return " credits";
-      case "diameter":
-        return " km";
-      case "orbital_period":
-        return " unified galaxy days";
-      case "rotation_period":
-        return " unified galaxy days";
-      case "average_height":
-        return " cm";
-      case "average_lifespan":
-        return " years";
-      default:
-        return "";
-    }
-  })();
+  const suffix: string = composeSuffix(name);
 
   if (name === "release_date") {
     value = String(new Date(String(value)).toUTCString().replace(/00:.*$/, ""));
   }
+
+  if (String(value).match(/\d{4}$/)) value = numberWithCommas(String(value));
 
   return (
     <div className={styles.Field}>

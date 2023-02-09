@@ -4,9 +4,6 @@
  * > https://blog.logrocket.com/how-to-use-react-context-typescript/
  * > https://felixgerschau.com/react-typescript-context/
  * > https://github.com/metalevel-tech/exc-laravel-react-v1/blob/master/react-app/src/main.jsx
- *
- * Below I'm using fn.bind() instead ()=>{fn}because this syntax is much compact,
- * later the functions of browserStorage.ts could be transformed to a useStorage() hook.
  */
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { SwapiSearchResult } from "../models";
@@ -24,7 +21,6 @@ import {
  *
  * But actually we do not need to maintain these states here,
  * we can create and use them locally within SearchResultsCats.tsx
- */
 interface SearchResults {
   all: SwapiSearchResult[];
   people: SwapiSearchResult;
@@ -34,6 +30,7 @@ interface SearchResults {
   vehicles: SwapiSearchResult;
   starships: SwapiSearchResult;
 }
+ */
 
 interface SearchContextType {
   searched: string;
@@ -48,11 +45,14 @@ interface SearchContextType {
   setIsNewSession: React.Dispatch<React.SetStateAction<boolean>>;
   selSrchEntry: string;
   setSelSrchEntry: React.Dispatch<React.SetStateAction<string>>;
+  beMeticulous: boolean;
+  setBeMeticulous: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SearchContext = createContext<SearchContextType>({
   ...({} as SearchContextType),
-  // Actually we don't need to ass any explicit values here.
+  // Actually we don't need to set any explicit values here,
+  // because they will be changed almost immediately by the user.
   // What I didn't manage to understand is
   // how to set default values for the methods?
   searched: "",
@@ -60,7 +60,8 @@ const SearchContext = createContext<SearchContextType>({
   searchCategory: "all",
   loading: false,
   isNewSession: true,
-  selSrchEntry: ""
+  selSrchEntry: "",
+  beMeticulous: false
 });
 
 interface Props {
@@ -71,7 +72,9 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
   const [searched, setSearched] = useState<string>(
     getSessionStorage("SS_SEARCHED", "")
   );
-  useEffect(setSessionStorage.bind(this, "SS_SEARCHED", searched), [searched]);
+  useEffect(() => {
+    setSessionStorage("SS_SEARCHED", searched);
+  }, [searched]);
 
   const [searchResults, setSearchResults] = useState<SwapiSearchResult[]>(
     (() => {
@@ -79,10 +82,11 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
       return getSessionStorage("SS_RESULTS", []);
     })()
   );
-  useEffect(setSessionStorage.bind(this, "SS_RESULTS", searchResults), [searchResults]);
+  useEffect(() => {
+    setSessionStorage("SS_RESULTS", searchResults);
+  }, [searchResults]);
 
   const [isNewSession, setIsNewSession] = useState<boolean>(true);
-
   useEffect(() => {
     console.log(searchResults);
     if (isNewSession && searchResults.length) setIsNewSession(false);
@@ -92,22 +96,29 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
   const [searchCategory, setSearchCategory] = useState<string>(
     getLocalStorage("SS_CATS", "all")
   );
-  useEffect(setLocalStorage.bind(this, "SS_CATS", searchCategory), [searchCategory]);
+  useEffect(() => {
+    setLocalStorage("SS_CATS", searchCategory);
+  }, [searchCategory]);
 
   const [loading, setLoading] = useState<boolean>(false);
-
   useEffect(() => {
     if (loading) loadingEnable();
-    // else setTimeout(loadingDisable, 800);
-    // The 'else' stat. is moved to useEffect(cb, [searchResults])
+    else setTimeout(loadingDisable, 800);
   }, [loading]);
 
   const [selSrchEntry, setSelSrchEntry] = useState<string>(
-    getSessionStorage("SS_SELECTED_SEARCH_ENTRY", "")
+    getSessionStorage("SS_SEL_SEARCH_ENTRY", "")
   );
-  useEffect(setSessionStorage.bind(this, "SS_SELECTED_SEARCH_ENTRY", selSrchEntry), [
-    selSrchEntry
-  ]);
+  useEffect(() => {
+    setSessionStorage("SS_SEL_SEARCH_ENTRY", selSrchEntry);
+  }, [selSrchEntry]);
+
+  const [beMeticulous, setBeMeticulous] = useState<boolean>(
+    getLocalStorage("SS_API_METICULOUS", false)
+  );
+  useEffect(() => {
+    setLocalStorage("SS_API_METICULOUS", beMeticulous);
+  }, [beMeticulous]);
 
   return (
     <SearchContext.Provider
@@ -123,7 +134,9 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
         isNewSession,
         setIsNewSession,
         selSrchEntry,
-        setSelSrchEntry
+        setSelSrchEntry,
+        beMeticulous,
+        setBeMeticulous
       }}
     >
       {children}

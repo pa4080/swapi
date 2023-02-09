@@ -410,14 +410,32 @@ body.loading-show #root {
  * Footer buttons
 */
 .view-source-hint,
-.switch-api-hint {
+.switch-api-hint,
+.counter-api-hint {
   float: right;
   position: absolute;
-  top: 25%;
+  top: 26%;
   width: max-content;
   opacity: 0;
   transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
   z-index: 0;
+}
+
+#api-hits-counter {
+  z-index: 10;
+  width: 3rem;
+}
+
+.counter-api-hint {
+  top: 0;
+  z-index: -1;
+  position: absolute;
+}
+
+#api-hits-counter:hover .counter-api-hint {
+  opacity: 1;
+  transform: translateY(.95rem);
+  transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .view-source-hint {
@@ -436,12 +454,12 @@ body.loading-show #root {
 
 .view-source-button:hover+.view-source-hint {
   opacity: 1;
-  transform: translate(-98%);
+  transform: translate(-100%);
   transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .switch-api-button:hover+.switch-api-hint {
   opacity: 1;
-  transform: translate(98%);
+  transform: translate(100%);
   transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
 }
