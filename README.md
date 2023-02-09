@@ -1,17 +1,19 @@
-# SWAPI Search App with ReactJs and TypeScript
+# [![SWAPI Search App with ReactJs and TypeScript](src/assets/images/repo-cover-swapi.metalevel.tech.webp)](https://swapi.metalevel.tech/)
 
-SWAPI (Star Wars API) Search App with ReactJs and Typescript Exercise.
+**_SWAPI Search App with ReactJs and TypeScript._**
 
 ## Resources and referens
 
 - [Star Wars API](https://swapi.dev/)
 
-  Related:
+- [Star Wars API Alternative](https://swapi.py4e.com/about) [Currently in use because is much faster and up to date than the official one.]
+
+- Related:
 
   - [SW Guide Site](https://starwars-visualguide.com/)
   - [SW Guide GitHub](https://github.com/tbone849/star-wars-guide/tree/master/build/assets/img)
   - [SWAPI Json Server GitHub](https://github.com/johnlindquist/swapi-json-server/tree/master/public)
-  - <https://swapi.py4e.com/about>
+
   - <https://starwars.fandom.com/wiki/Obi-Wan_Kenobi_(television_series)>
 
 - [Star Jedi Font](https://www.dafont.com/star-jedi.font)

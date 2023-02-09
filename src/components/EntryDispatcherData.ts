@@ -19,6 +19,7 @@ export type OutputData = {
     };
     [key: string]: any;
 };
+
 export default <OutputData>{
     people: {
         "category": false, //

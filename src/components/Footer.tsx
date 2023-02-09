@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import {
   FaGithub as Github,
-  FaYinYang,
   FaJedi,
   FaGalacticRepublic,
   FaEmpire
 } from "react-icons/fa";
-import { GiDeathStar } from "react-icons/gi";
+// import { GiDeathStar } from "react-icons/gi";
 import { useSearchContext } from "../contexts/SearchContextProvider";
 import { getLocalStorage, setLocalStorage } from "../helpers/browserStorage";
 

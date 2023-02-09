@@ -2,8 +2,10 @@ import DOMPurify from "dompurify";
 import { SwapiSearchResult } from "../models";
 import axiosClient from "./axiosClient";
 
+// Actions:  "search" | "page"
+// Searched: "string" | "number of page"
 const swapiSearch =
-  async (categories: string[], searched: string): Promise<SwapiSearchResult[]> => {
+  async (categories: string[], searched: string, action: string = "search"): Promise<SwapiSearchResult[]> => {
     const searchDataArray: SwapiSearchResult[] = [];
     let uri: (cat: string) => string;
 
@@ -13,7 +15,7 @@ const swapiSearch =
       uri = (cat: string): string => `${cat}/`;
     } else {
       const word: string = DOMPurify.sanitize(searched).replace(/["?]/g, "");
-      uri = (cat: string): string => `${cat}/?search=${word}`;
+      uri = (cat: string): string => `${cat}/?${action}=${word}`;
     }
 
     for (const category of categories) {

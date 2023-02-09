@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
 import Title from "../components/Title";
@@ -14,7 +14,9 @@ const Main: React.FC<Props> = (props) => {
         <div className="mlt-grid-main-left">
           <div className="mlt-grid-main-left-header pt-4 pb-4 px-2">
             <div className="search-input-box">
-              <Title titleStyle={"text-mlt-4xl-plus"} />
+              <Link to="/search">
+                <Title titleStyle={"text-mlt-4xl-plus"} />
+              </Link>
               <SearchForm
                 formStyle={"pl-2 pr-1 mt-4"}
                 inputStyle={"text-md"}
