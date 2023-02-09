@@ -4,6 +4,7 @@ import { useSearchContext } from "../contexts/SearchContextProvider";
 import swapiSearch from "../helpers/swapiSearch";
 import SearchRadioCats from "./SearchRadioCats";
 import SearchInput from "./SearchInput";
+import { loadingDisable, loadingEnable } from "../helpers/loadingEffects";
 
 interface Props {
   formStyle?: string;
@@ -16,13 +17,16 @@ const SearchForm: React.FC<Props> = ({
   inputStyle,
   radioStyle
 }) => {
-  const { searched, setSearchResults, searchCategory, setLoading } = useSearchContext();
+  const { searched, setSearchResults, searchCategory } = useSearchContext();
 
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleSearch = async (ev: React.FormEvent): Promise<void> => {
     ev.preventDefault();
     if (!searched) return;
+
+    sessionStorage.setItem("SS_LOADING", "true");
+    loadingEnable();
 
     const cats: string[] = [];
 
@@ -32,15 +36,13 @@ const SearchForm: React.FC<Props> = ({
     formRef.current?.querySelector("input")?.blur();
 
     try {
-      setLoading(true);
-
-      setTimeout(async () => {
-        const results = await swapiSearch(cats, searched);
-        setSearchResults(results);
-        setLoading(false);
+      const results = await swapiSearch(cats, searched);
+      sessionStorage.setItem("SS_LOADING", "false");
+      setTimeout(() => {
+        loadingDisable();
       }, 800);
+      setSearchResults(results);
     } catch (error) {
-      setLoading(false);
       console.error(error);
     }
   };

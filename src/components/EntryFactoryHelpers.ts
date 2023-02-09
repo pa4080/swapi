@@ -29,9 +29,20 @@ export const capitalize = (input: any): string => {
     .join(" ");
 };
 
-export function numberWithCommas(x: string | number): string {
-  // https://stackoverflow.com/a/2901298/6543935
-  return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+export function numberWithCommas(input: string | number): string {
+  /**
+   * Safari browser does not support lookbehind RegExps and 
+   * the following expression causes an fatal error.
+   * input.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+   * Refs:
+   * > https://www.appsloveworld.com/reactjs/200/495/react-application-on-safari-throws-syntaxerror-invalid-regular-expression-inval
+   * > https://stackoverflow.com/questions/51568821/works-in-chrome-but-breaks-in-safari-invalid-regular-expression-invalid-group
+   * > https://stackoverflow.com/questions/20646412/simple-regex-in-javascript-works-in-all-browsers-but-safari
+   * > https://caniuse.com/js-regexp-lookbehind
+   * Solution: 
+   * > https://stackoverflow.com/a/2901298/6543935
+   */
+  return String(input).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 }
 
 export const composeSuffix = (key: string): string => {

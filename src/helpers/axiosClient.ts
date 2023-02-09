@@ -7,6 +7,7 @@
  */
 import axios, { AxiosInstance } from "axios";
 import { getLocalStorage } from "./browserStorage";
+import { loadingDisable, loadingEnable } from "./loadingEffects";
 
 const headers: Readonly<Record<string, string | boolean>> = {
 	"Accept": "application/json",
@@ -27,6 +28,7 @@ const axiosClient: AxiosInstance = axios.create({
 axiosClient.interceptors.request.use(
 	(config) => {
 		// console.log(`Axios fetch: ${config.baseURL}`);
+		// loadingEnable();
 
 		const counter = document.getElementById("api-hits-counter")?.querySelector("span");
 		if (counter) {
@@ -40,7 +42,13 @@ axiosClient.interceptors.request.use(
 );
 
 axiosClient.interceptors.response.use(
-	(response) => { return response; },
+	(response) => {
+
+		// setTimeout(() => {
+		// 	loadingDisable();
+		// }, 800);
+		return response;
+	},
 	(error) => { throw error; }
 );
 

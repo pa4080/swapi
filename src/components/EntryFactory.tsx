@@ -18,13 +18,21 @@ const EntryFactory: React.FC<Props> = ({ data, styles = defaultStyles, fields })
 
   return (
     <div className={`entry-container ${styles.EntryContainer}`}>
-      <h2 className={styles.Cat}>{capitalize(data.category)}</h2>
-      <div className="entry-data">
-        <div className={styles.TitleName}>{capitalize(data.title ?? data.name)}</div>
-        <div className={styles.DataContainer}>
-          {fields.map((field, i) => returnField(field, i))}
-        </div>
-      </div>
+      {data.category ? (
+        <>
+          <h2 className={styles.Cat}>{capitalize(data.category)}</h2>
+          <div className="entry-data">
+            <div className={styles.TitleName}>
+              {capitalize(data.title ?? data.name)}
+            </div>
+            <div className={styles.DataContainer}>
+              {fields.map((field, i) => returnField(field, i))}
+            </div>
+          </div>
+        </>
+      ) : (
+        <h2 className={styles.Cat}>Jumping through hyperspace...</h2>
+      )}
     </div>
   );
 };

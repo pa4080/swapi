@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSearchContext } from "../contexts/SearchContextProvider";
+import { loadingDisable, loadingEnable } from "../helpers/loadingEffects";
 import swapiEntry from "../helpers/swapiEntry";
 import swapiSearch from "../helpers/swapiSearch";
 import { SwapiCats, SwapiTypes } from "../models";
@@ -28,8 +29,6 @@ const EntryDispatcher: React.FC<Props> = (props) => {
     setSearchResults,
     searchCategory,
     setSearchCategory,
-    loading,
-    setLoading,
     isNewSession,
     setIsNewSession,
     selSrchEntry,
@@ -37,7 +36,6 @@ const EntryDispatcher: React.FC<Props> = (props) => {
     beMeticulous,
     setBeMeticulous
   } = useSearchContext();
-  // setLoading(true); causes big troubles here!
   // let dataToShowManipulated: OutputData = JSON.parse(JSON.stringify(dataToShow));
 
   const [entry, setEntry] = useState<SwapiTypes>({} as SwapiTypes);
@@ -51,6 +49,9 @@ const EntryDispatcher: React.FC<Props> = (props) => {
   const { cat, id } = useParams<string>();
 
   useEffect(() => {
+    sessionStorage.setItem("SS_LOADING", "true");
+    loadingEnable();
+
     try {
       (async () => {
         const res = await swapiEntry(cat!, id!);
@@ -108,19 +109,16 @@ const EntryDispatcher: React.FC<Props> = (props) => {
       setIsNewSession(true);
       setSearched("");
       setSearchResults([]);
-      setLoading(true);
       navigate("/search");
     }
 
     if (!searchResults.length) {
       try {
-        setLoading(true);
         (async () => {
           const results = await swapiSearch([cat!], "[show all]");
           setSearchResults(results);
         })();
       } catch (error) {
-        setLoading(false);
         console.error(error);
       }
     }
@@ -140,6 +138,10 @@ const EntryDispatcher: React.FC<Props> = (props) => {
       }
     }
 
+    sessionStorage.setItem("SS_LOADING", "false");
+    setTimeout(() => {
+      loadingDisable();
+    }, 800);
     return dataShowArray;
   };
 

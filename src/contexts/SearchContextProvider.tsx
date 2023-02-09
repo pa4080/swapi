@@ -7,13 +7,13 @@
  */
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { SwapiSearchResult } from "../models";
-import { loadingDisable, loadingEnable } from "../helpers/loadingEffects";
 import {
   getLocalStorage,
   setLocalStorage,
   getSessionStorage,
   setSessionStorage
 } from "../helpers/browserStorage";
+import { loadingDisable } from "../helpers/loadingEffects";
 
 /*
  * We may need to maintain state for each category
@@ -39,8 +39,6 @@ interface SearchContextType {
   setSearchResults: React.Dispatch<React.SetStateAction<SwapiSearchResult[]>>;
   searchCategory: string;
   setSearchCategory: React.Dispatch<React.SetStateAction<string>>;
-  loading: boolean;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isNewSession: boolean;
   setIsNewSession: React.Dispatch<React.SetStateAction<boolean>>;
   selSrchEntry: string;
@@ -58,7 +56,6 @@ const SearchContext = createContext<SearchContextType>({
   searched: "",
   searchResults: [],
   searchCategory: "all",
-  loading: false,
   isNewSession: true,
   selSrchEntry: "",
   beMeticulous: false
@@ -84,13 +81,17 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
   );
   useEffect(() => {
     setSessionStorage("SS_RESULTS", searchResults);
+
+    // sessionStorage.setItem("SS_LOADING", "false");
+    // setTimeout(() => {
+    //   loadingDisable();
+    // }, 800);
   }, [searchResults]);
 
   const [isNewSession, setIsNewSession] = useState<boolean>(true);
   useEffect(() => {
     console.log(searchResults);
     if (isNewSession && searchResults.length) setIsNewSession(false);
-    setTimeout(loadingDisable, 800);
   }, [searchResults]);
 
   const [searchCategory, setSearchCategory] = useState<string>(
@@ -99,12 +100,6 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
   useEffect(() => {
     setLocalStorage("SS_CATS", searchCategory);
   }, [searchCategory]);
-
-  const [loading, setLoading] = useState<boolean>(false);
-  useEffect(() => {
-    if (loading) loadingEnable();
-    else setTimeout(loadingDisable, 800);
-  }, [loading]);
 
   const [selSrchEntry, setSelSrchEntry] = useState<string>(
     getSessionStorage("SS_SEL_SEARCH_ENTRY", "")
@@ -129,8 +124,6 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
         setSearchResults,
         searchCategory,
         setSearchCategory,
-        loading,
-        setLoading,
         isNewSession,
         setIsNewSession,
         selSrchEntry,

@@ -4,6 +4,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import SearchResultsEntry from "./SearchResultsEntry";
 import { useSearchContext } from "../contexts/SearchContextProvider";
 import swapiSearch from "../helpers/swapiSearch";
+import { loadingDisable, loadingEnable } from "../helpers/loadingEffects";
 
 interface Props {
   cat: SwapiSearchResult;
@@ -29,12 +30,20 @@ const SearchResultsCat: React.FC<Props> = ({ cat }) => {
 
   const handlePagination = async (page: string): Promise<void> => {
     if (!page) return;
+    sessionStorage.setItem("SS_LOADING", "true");
+    loadingEnable();
+
     const newCatState = await swapiSearch([category], page, "page");
 
     setSearchResults((prevState) => {
       const indexOfCat = prevState.findIndex((obj) => obj.category === category);
       const newSearchResults = [...prevState];
       newSearchResults.splice(indexOfCat, 1, ...newCatState);
+
+      sessionStorage.setItem("SS_LOADING", "false");
+      setTimeout(() => {
+        loadingDisable();
+      }, 800);
       return newSearchResults;
     });
   };

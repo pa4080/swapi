@@ -188,6 +188,7 @@ pre {
   height: 100%;
   overflow: hidden;
   z-index: 1;
+  min-width: 380px;
 }
 
 .mlt-grid-main-left-content {
@@ -206,7 +207,7 @@ pre {
   grid-area: right;
   position: relative;
   overflow-y: overlay;
-  overflow-x: hidden;
+  overflow-x: auto;
   min-width: 420px;
 }
 
@@ -224,6 +225,7 @@ pre {
 .mlt-grid-main-right .entry-container {
   max-width: 768px;
   hyphens: auto;
+  min-width: 380px;
 }
 
 .entry-container a:hover {
@@ -319,7 +321,7 @@ body.loading {
   position: relative;
 }
 
-body.loading::after {
+body.loading::before {
   /* z-index: 1; */
   position: absolute;
   top: 0;
@@ -336,7 +338,7 @@ body.loading::after {
   opacity: 0;
 }
 
-body.loading.loading-show::after {
+body.loading.loading-show::before {
   transition: opacity .8s ease-in-out;
   opacity: 1;
 }
