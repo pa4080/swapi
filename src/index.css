@@ -6,28 +6,28 @@
 @font-face {
   font-family: "Starjout";
   font-display: swap;
-  src: url('./assets/Starjout.eot');
+  src: url('./assets/fonts/Starjout.eot');
   /* IE9 Compat Modes */
   src: local('Starjout'),
-    url('./assets/Starjout.woff2') format('woff2'),
+    url('./assets/fonts/Starjout.woff2') format('woff2'),
     /* Super Modern Browsers */
-    url('./assets/Starjout.woff') format('woff'),
+    url('./assets/fonts/Starjout.woff') format('woff'),
     /* Modern Browsers */
-    url('./assets/Starjout.ttf') format('truetype')
+    url('./assets/fonts/Starjout.ttf') format('truetype')
     /* Safari, Android, iOS */
 }
 
 @font-face {
   font-family: "Starjedi";
   font-display: swap;
-  src: url('./assets/Starjedi.eot');
+  src: url('./assets/fonts/Starjedi.eot');
   /* IE9 Compat Modes */
   src: local('Starjedi'),
-    url('./assets/Starjedi.woff2') format('woff2'),
+    url('./assets/fonts/Starjedi.woff2') format('woff2'),
     /* Super Modern Browsers */
-    url('./assets/Starjedi.woff') format('woff'),
+    url('./assets/fonts/Starjedi.woff') format('woff'),
     /* Modern Browsers */
-    url('./assets/Starjedi.ttf') format('truetype')
+    url('./assets/fonts/Starjedi.ttf') format('truetype')
     /* Safari, Android, iOS */
 }
 
@@ -187,6 +187,7 @@ pre {
   align-items: center;
   height: 100%;
   overflow: hidden;
+  z-index: 1;
 }
 
 .mlt-grid-main-left-content {
@@ -198,19 +199,26 @@ pre {
   height: -moz-fit-content;
   transition: height 1.5s ease-in-out;
   width: 100%;
+
 }
 
 .mlt-grid-main-right {
   grid-area: right;
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-  /* flex-direction: column; */
-  /* justify-content: flex-start; */
-  /* align-content: flex-start; */
   position: relative;
   overflow-y: overlay;
   overflow-x: hidden;
   min-width: 420px;
+}
+
+.mlt-grid-main-right {
+  background-image: url("./assets/images/star-wars-cover-2.webp");
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-attachment: fixed;
+  /* background-size: contain; */
+  background-size: auto 70%;
+  /* width auto, height 70% */
+  z-index: 0;
 }
 
 .mlt-grid-main-right .entry-container {
@@ -220,21 +228,6 @@ pre {
 
 .entry-container a:hover {
   text-decoration: underline;
-}
-
-.mlt-grid-main-right::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* background-color: rgb(255 255 255 / 2%); */
-  background-image: url("./assets/images/star-wars-cover-2.webp");
-  background-repeat: no-repeat;
-  background-position: top right;
-  background-size: auto 100%;
-  z-index: -1;
 }
 
 .mlt-grid-main-footer {
