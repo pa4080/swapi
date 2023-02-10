@@ -54,8 +54,10 @@ const SearchForm: React.FC<Props> = ({
       onSubmit={handleSearch}
       className={`w-full ${formStyle}`}
     >
-      <SearchInput inputStyle={inputStyle} />
-      <SearchRadioCats radioStyle={radioStyle} />
+      <fieldset>
+        <SearchInput inputStyle={inputStyle} />
+        <SearchRadioCats radioStyle={radioStyle} />
+      </fieldset>
     </form>
   );
 };

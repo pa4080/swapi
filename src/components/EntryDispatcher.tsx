@@ -58,6 +58,17 @@ const EntryDispatcher: React.FC<Props> = (props) => {
         const secondApiReq: string[] = ["homeworld", "films"];
 
         if (beMeticulous) {
+          // Get the list of the false keys from dataToShow{}
+
+          for (const category in dataToShow) {
+            for (const key in dataToShow[category]) {
+              if (key === "category") continue;
+              if (!dataToShow[category][key] && !secondApiReq.includes(key))
+                secondApiReq.push(key);
+            }
+          }
+          /**
+           * To be removed 
           secondApiReq.push("species"); // people | films
           secondApiReq.push("vehicles"); // people | films
           secondApiReq.push("starships"); // people | films
@@ -66,14 +77,18 @@ const EntryDispatcher: React.FC<Props> = (props) => {
           secondApiReq.push("people"); // species
           secondApiReq.push("characters"); // films
           secondApiReq.push("planets"); // films
+           */
         }
 
         for (const item of secondApiReq) {
+          newEntry[item];
+
           if (newEntry[item]) {
             if (Array.isArray(newEntry[item])) {
               const newItems: JSX.Element[] = [];
 
               for (const fetchItem of newEntry[item]) {
+                // Here must check: typeof fetchItem === "string"
                 const getPrettyLink = await urlToPrettyInternalLink(String(fetchItem));
                 newItems.push(getPrettyLink);
               }
@@ -81,12 +96,13 @@ const EntryDispatcher: React.FC<Props> = (props) => {
               if (newItems.length) {
                 newEntry[item] = newItems;
               } else {
-                newEntry[item] = "Unknown";
+                newEntry[item] = "N/a";
               }
             } else {
+              // Here must check: typeof newEntry[item] === "string"
               newEntry[item] = await urlToPrettyInternalLink(String(newEntry[item]));
             }
-          } else if (newEntry.hasOwnProperty(item)) newEntry[item] = "Unknown";
+          } else if (newEntry.hasOwnProperty(item)) newEntry[item] = "N/a";
         }
 
         const entryId = `${newEntry.category}-${(newEntry.title ?? newEntry.name)

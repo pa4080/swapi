@@ -39,6 +39,7 @@ export function numberWithCommas(input: string | number): string {
     return String(input).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 }
 
+// TODO: This should be an Object - much faster solution.
 export const composeSuffix = (key: string): string => {
     switch (key.toLowerCase()) {
         case "height":

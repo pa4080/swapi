@@ -1,12 +1,14 @@
 # [![SWAPI Search App with ReactJs and TypeScript](src/assets/images/repo-cover-swapi.metalevel.tech.webp)](https://swapi.metalevel.tech/)
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/78cf93fb0111435590e60a0e75ed9918)](https://www.codacy.com/gh/metalevel-tech/prj-ts-react-swapi/dashboard?utm_source=github.com&utm_medium=referral&utm_content=metalevel-tech/prj-ts-react-swapi&utm_campaign=Badge_Grade)
+
 **_SWAPI Search App with ReactJs and TypeScript._**
 
 ## Resources and referens
 
 - [Star Wars API](https://swapi.dev/)
 
-- [Star Wars API Alternative](https://swapi.py4e.com/about) [Currently in use because is much faster and up to date than the official one.]
+- [Star Wars API Alternative](https://swapi.py4e.com/about) provided by Dr. Charles R. Severance. Currently in use because is much faster, up to date than the official one and also provides much correct information.
 
 - Related:
 
@@ -22,15 +24,20 @@
 
 - [`UseHooks-TS`](https://usehooks-ts.com/) a React hooks library, ready to use, written in typescript.
 
-## Notes
+## Project setup
 
-- To handle the pagination of search results per category, I just need to modify/replace the relevant object in the `searchResults` state.
-- Invalidate selected search entry on new search?!?
-- I should set browser's state instead using local storage, thus I can use the browser's back button to go back to the previous state and read the last state on page reload...
+Clone the repository, then install the dependencies and start the development server.
 
-## Setup the Project
+```bash
+npm install
+npm start
+```
+
+The rest of the commands are available in the [`package.json`](package.json) file. See also the [`.github/workflows/workflow.yml`](.github/workflows/workflow.yml) file for the GitHub Actions workflow.
 
 <details>
+
+<summary> Initial setup of project </summary>
 
 ### Install ReactJs and Typescript by [Vite](https://vitejs.dev/guide/why.html)
 
@@ -52,6 +59,8 @@ npm i usehooks-ts
       "start": "vite --host 0.0.0.0 --port 3000",
   }
   ```
+
+- Note I need to access the app from other devices on the same network to test it on Mobile, Hackintosh, Windows etc.
 
 - Clean the `src/` and `public/` directories and start working on the project.
 
