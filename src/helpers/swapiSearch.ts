@@ -1,6 +1,6 @@
 import DOMPurify from "dompurify";
 import { SwapiSearchResult } from "../models";
-import axiosClient from "./axiosClient";
+import swapiAxiosClient from "./swapiAxiosClient";
 
 // Actions:  "search" | "page"
 // Searched: "string" | "number of page"
@@ -21,7 +21,7 @@ const swapiSearch =
     for (const category of categories) {
       try {
         // Get only the data property from the response
-        const { data } = await axiosClient.get(uri(category));
+        const { data } = await swapiAxiosClient.get(uri(category));
 
         if (category === "films")
           data.results.sort((a: any, b: any) => a.episode_id - b.episode_id);
