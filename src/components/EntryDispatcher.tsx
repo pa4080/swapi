@@ -5,7 +5,7 @@ import { loadingDisable, loadingEnable } from "../helpers/loadingEffects";
 import swapiEntry from "../helpers/swapiEntry";
 import swapiSearch from "../helpers/swapiSearch";
 import { SwapiCats, SwapiTypes } from "../models";
-import dataToShow, { OutputData } from "./EntryDispatcherData";
+import dataToShow from "./EntryDispatcherData";
 import EntryFactory from "./EntryFactory";
 
 const urlToPrettyInternalLink = async (url: string): Promise<JSX.Element> => {
@@ -23,18 +23,13 @@ interface Props {}
 
 const EntryDispatcher: React.FC<Props> = (props) => {
   const {
-    searched,
     setSearched,
     searchResults,
     setSearchResults,
-    searchCategory,
-    setSearchCategory,
-    isNewSession,
     setIsNewSession,
     selSrchEntry,
     setSelSrchEntry,
-    beMeticulous,
-    setBeMeticulous
+    beMeticulous
   } = useSearchContext();
   // let dataToShowManipulated: OutputData = JSON.parse(JSON.stringify(dataToShow));
 
@@ -54,9 +49,12 @@ const EntryDispatcher: React.FC<Props> = (props) => {
 
     try {
       (async () => {
-        const res = await swapiEntry(cat!, id!);
-        console.log(res);
+        // Get the Entry data
+        const newEntry = await swapiEntry(cat!, id!);
+        console.log(newEntry);
 
+        // Get the data (name) of the related 'items' (entries)
+        // within the Entry and convert them to a Links.
         const secondApiReq: string[] = ["homeworld", "films"];
 
         if (beMeticulous) {
@@ -71,32 +69,32 @@ const EntryDispatcher: React.FC<Props> = (props) => {
         }
 
         for (const item of secondApiReq) {
-          if (res[item]) {
-            if (Array.isArray(res[item])) {
+          if (newEntry[item]) {
+            if (Array.isArray(newEntry[item])) {
               const newItems: JSX.Element[] = [];
 
-              for (const fetchItem of res[item]) {
+              for (const fetchItem of newEntry[item]) {
                 const getPrettyLink = await urlToPrettyInternalLink(String(fetchItem));
                 newItems.push(getPrettyLink);
               }
 
               if (newItems.length) {
-                res[item] = newItems;
+                newEntry[item] = newItems;
               } else {
-                res[item] = "Unknown";
+                newEntry[item] = "Unknown";
               }
             } else {
-              res[item] = await urlToPrettyInternalLink(String(res[item]));
+              newEntry[item] = await urlToPrettyInternalLink(String(newEntry[item]));
             }
-          } else if (res.hasOwnProperty(item)) res[item] = "Unknown";
+          } else if (newEntry.hasOwnProperty(item)) newEntry[item] = "Unknown";
         }
 
-        const entryId = `${res.category}-${(res.title ?? res.name)
+        const entryId = `${newEntry.category}-${(newEntry.title ?? newEntry.name)
           .replace(/ /g, "-")
           .toLowerCase()}`;
         if (selSrchEntry !== entryId) setSelSrchEntry(entryId);
 
-        setEntry(res);
+        setEntry(newEntry);
       })();
     } catch (error) {
       console.error(error);

@@ -70,5 +70,7 @@
   },
 
   "javascript.autoClosingTags": true,
-  "typescript.autoClosingTags": true
+  "typescript.autoClosingTags": true,
+  "css.format.spaceAroundSelectorSeparator": true,
+  "files.insertFinalNewline": true
 }

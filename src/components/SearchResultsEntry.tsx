@@ -11,14 +11,14 @@ interface Props {
 const SearchResultsEntry: React.FC<Props> = ({ entry, catName }) => {
   const { title, name, episode_id, url, films } = entry;
   const { selSrchEntry, setSelSrchEntry } = useSearchContext();
-  const entryId = `${catName}-${(title ?? name).replace(/ /g, "-").toLowerCase()}`;
-
   const navigate = useNavigate();
+
+  const entryId = `${catName}-${(title ?? name).replace(/ /g, "-").toLowerCase()}`;
 
   const handleOnClick = (ev: React.MouseEvent, url: string): void => {
     if (ev.currentTarget.tagName === "SPAN") ev.stopPropagation();
+
     const targetPage: string = url.replace(/^https?:.*?api\//, "/");
-    // console.log("SearchResultsEntry.tsx", targetPage, entryId);
     setSelSrchEntry(entryId);
     navigate(targetPage);
   };

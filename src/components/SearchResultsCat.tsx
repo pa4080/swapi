@@ -1,5 +1,5 @@
 import React from "react";
-import { SwapiSearchResult, SwapiTypes } from "../models";
+import { SwapiSearchResult } from "../models";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import SearchResultsEntry from "./SearchResultsEntry";
 import { useSearchContext } from "../contexts/SearchContextProvider";
@@ -12,7 +12,7 @@ interface Props {
 
 const SearchResultsCat: React.FC<Props> = ({ cat }) => {
   const { category, results, count, next, previous: prev } = cat;
-  const { searchResults, setSearchResults } = useSearchContext();
+  const { setSearchResults } = useSearchContext();
 
   const nextApiUri: string = String(next).replace(/^https?:.*?api\//, "/");
   const prevApiUri: string = String(prev).replace(/^https?:.*?api\//, "/");
@@ -49,7 +49,7 @@ const SearchResultsCat: React.FC<Props> = ({ cat }) => {
   };
 
   return (
-    <div className="category-single mx-5 px-6 py-4 rounded-3xl border border-mlt-dark-3">
+    <div className="category mx-5 px-6 py-4 rounded-3xl border border-mlt-dark-3">
       <h2 className="mb-2 relative">
         <span className="capitalize text-2xl">{category}</span>&nbsp;&nbsp;
         <span className="text-lg font-normal opacity-75">
@@ -61,7 +61,7 @@ const SearchResultsCat: React.FC<Props> = ({ cat }) => {
         >
           <span
             onClick={() => handlePagination(String(prevNumber))}
-            className={`inline-block h-full p-mlt-1-plus ${
+            className={`inline-block h-full px-px py-mlt-1-plus md:p-mlt-1-plus ${
               prevNumber
                 ? "text-mlt-gray-5 active:text-mlt-yellow-primary cursor-pointer"
                 : "text-mlt-gray-1"
@@ -75,7 +75,7 @@ const SearchResultsCat: React.FC<Props> = ({ cat }) => {
           </span>
           <span
             onClick={() => handlePagination(String(nextNumber))}
-            className={`inline-block h-full p-mlt-1-plus ${
+            className={`inline-block h-full px-px py-mlt-1-plus md:p-mlt-1-plus ${
               nextNumber
                 ? "text-mlt-gray-5 active:text-mlt-yellow-primary cursor-pointer"
                 : "text-mlt-gray-1"
@@ -85,7 +85,7 @@ const SearchResultsCat: React.FC<Props> = ({ cat }) => {
           </span>
         </div>
       </h2>
-      <div>
+      <div className="category-entry-container">
         {results.map((entry, i) => (
           <SearchResultsEntry key={i} entry={entry} catName={category} />
         ))}

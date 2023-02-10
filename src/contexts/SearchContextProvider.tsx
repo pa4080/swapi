@@ -13,24 +13,6 @@ import {
   getSessionStorage,
   setSessionStorage
 } from "../helpers/browserStorage";
-import { loadingDisable } from "../helpers/loadingEffects";
-
-/*
- * We may need to maintain state for each category
- * in order to handle the pagination?!?
- *
- * But actually we do not need to maintain these states here,
- * we can create and use them locally within SearchResultsCats.tsx
-interface SearchResults {
-  all: SwapiSearchResult[];
-  people: SwapiSearchResult;
-  planets: SwapiSearchResult;
-  films: SwapiSearchResult;
-  species: SwapiSearchResult;
-  vehicles: SwapiSearchResult;
-  starships: SwapiSearchResult;
-}
- */
 
 interface SearchContextType {
   searched: string;
@@ -81,11 +63,6 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
   );
   useEffect(() => {
     setSessionStorage("SS_RESULTS", searchResults);
-
-    // sessionStorage.setItem("SS_LOADING", "false");
-    // setTimeout(() => {
-    //   loadingDisable();
-    // }, 800);
   }, [searchResults]);
 
   const [isNewSession, setIsNewSession] = useState<boolean>(true);

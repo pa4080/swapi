@@ -15,7 +15,6 @@ const SearchRadioCats: React.FC<Props> = ({
   for (const key in SwapiCats) cats.push(key);
 
   const handleRadioChange = (ev: React.ChangeEvent<HTMLInputElement>): void => {
-    // We could do trigger a new search on category change?
     setSearchCategory(ev.target.value);
   };
 

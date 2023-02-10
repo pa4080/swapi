@@ -34,44 +34,22 @@
 :root {
   font-family: theme('fontFamily.Cairo');
   font-weight: 600;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   color: theme('colors.mlt-gray-6');
   background-color: theme('colors.mlt-dark-2');
-
+  accent-color: theme('colors.mlt-yellow-primary');
   user-select: none;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-
-  /*
-  --mlt-gray-1: #646464;
-  --mlt-gray-2: #787878;
-  --mlt-gray-3: #a0a0a0;
-  --mlt-gray-4: #b4b4b4;
-  --mlt-gray-5: #c8c8c8;
-  --mlt-gray-6: #d4d4d4;
-
-  --mlt-dark-0: #080808;
-  --mlt-dark-1: #111111;
-  --mlt-dark-2: #242424;
-  --mlt-dark-3: #333333;
-  --mlt-dark-4: #3c3c3c;
-  --mlt-dark-5: #444444;
-  --mlt-dark-6: #555555;
-
-  --mlt-blue-primary: #548ADA;
-  --mlt-blue-secondary: #5d9fff;
-  --mlt-purple-primary: #9468D8;
-  --mlt-purple-secondary: #b07bff;
-  */
 }
 
 /**
  * Common Layout
  */
+
 html,
 body {
   margin: 0;
@@ -96,10 +74,10 @@ pre {
 /**
  * Centered Layout
  */
+
 .mlt-flex-centered {
   height: 100%;
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,27 +87,21 @@ pre {
 .mlt-flex-centered-header {
   /* rgb(255 255 255 / 7%) */
   /* background-color: theme('colors.mlt-dark-3'); */
-  box-shadow: 0px 8px 8px -3px theme('colors.mlt-dark-2');
+  box-shadow: 0 8px 8px -3px theme('colors.mlt-dark-2');
   z-index: 10;
-
   height: max-content;
   height: fit-content;
   height: -moz-fit-content;
-
 }
 
 .mlt-flex-centered-footer {
   /* background-color: theme('colors.mlt-dark-3'); */
-  box-shadow: 0px -8px 8px -3px theme('colors.mlt-dark-2');
+  box-shadow: 0 -8px 8px -3px theme('colors.mlt-dark-2');
   z-index: 10;
-
   height: max-content;
   height: fit-content;
   height: -moz-fit-content;
-
-  /* line-height: .6; */
   width: 100%;
-
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -143,14 +115,11 @@ pre {
 
 .mlt-flex-centered-content {
   overflow-x: hidden;
-  /* overflow-y: auto; */
   overflow-y: overlay;
   flex: 1;
-  /* flex-grow: 1; */
   height: max-content;
   height: fit-content;
   height: -moz-fit-content;
-
   transition: height 1.5s ease-in-out;
 }
 
@@ -161,25 +130,24 @@ pre {
 }
 
 /**
- * Main Layout
+ * MasterDetail Layout
  */
 
-.mlt-grid-main {
+.mlt-grid-md {
   display: grid;
-  grid-template-columns: fit-content(30rem) 1fr;
+  grid-template-columns: fit-content(34rem) 1fr;
   grid-template-rows: 1fr fit-content(80px);
-
+  height: 100vh;
+  width: 100%;
+  /*width: 100vw; /* in some cases causes issues with Safari */
   grid-template-areas:
     "left right"
     "footer footer";
-
-  width: 100vw;
-  height: 100vh;
 }
 
-.mlt-grid-main-left {
+.mlt-grid-md-left {
   grid-area: left;
-  box-shadow: 8px 0px 8px -3px #242424;
+  box-shadow: 8px 0 8px -3px #242424;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
@@ -191,7 +159,7 @@ pre {
   min-width: 380px;
 }
 
-.mlt-grid-main-left-content {
+.mlt-grid-md-left-content {
   overflow-x: hidden;
   overflow-y: overlay;
   height: -moz-max-content;
@@ -200,41 +168,38 @@ pre {
   height: -moz-fit-content;
   transition: height 1.5s ease-in-out;
   width: 100%;
-
 }
 
-.mlt-grid-main-right {
+.mlt-grid-md-right {
   grid-area: right;
   position: relative;
   overflow-y: overlay;
   overflow-x: auto;
-  min-width: 420px;
-}
-
-.mlt-grid-main-right {
   background-image: url("./assets/images/star-wars-cover-2.webp");
   background-repeat: no-repeat;
   background-position: top right;
   background-attachment: fixed;
-  /* background-size: contain; */
   background-size: auto 70%;
-  /* width auto, height 70% */
+  /* width auto, height 70%; or contain */
+  min-width: 380px;
   z-index: 0;
 }
 
-.mlt-grid-main-right .entry-container {
-  max-width: 768px;
+.mlt-grid-md-right .entry-container {
   hyphens: auto;
-  min-width: 380px;
+  max-width: 768px;
+  /* min-width: 380px; /* follow the container */
+  width: -webkit-fill-available;
+  width: -moz-available;
 }
 
 .entry-container a:hover {
   text-decoration: underline;
 }
 
-.mlt-grid-main-footer {
+.mlt-grid-md-footer {
   grid-area: footer;
-  box-shadow: 0px -8px 8px -3px theme('colors.mlt-dark-2');
+  box-shadow: 0 -8px 8px -3px theme('colors.mlt-dark-2');
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -242,15 +207,15 @@ pre {
   align-content: center;
   flex-wrap: wrap;
   z-index: 10;
-
   height: max-content;
   height: fit-content;
   height: -moz-fit-content;
 }
 
 /**
-  * Scrollbar
-  */
+ * Scrollbar
+ */
+
 *::-webkit-scrollbar {
   width: 1em;
 }
@@ -275,19 +240,16 @@ pre {
 
 /** FireFox Scrollbar * html, body {...} **/
 * {
+  scrollbar-width: thin;
+  scrollbar-width: auto;
   scrollbar-color: theme('colors.mlt-yellow-primary') theme('colors.mlt-dark-3');
   /* thumb, track */
-  scrollbar-width: thin;
 }
-
 
 /**
  * Radio Buttons
  * > https://bryntum.com/blog/3-ways-to-style-radio-buttons-with-modern-css/
  */
-body {
-  accent-color: theme('colors.mlt-yellow-primary');
-}
 
 input[type="radio"] {
   accent-color: theme('colors.mlt-yellow-primary');
@@ -309,20 +271,21 @@ input[type="radio"]:not(:checked) {
  * Caret Color
  * > https://benfrain.com/creating-a-custom-input-cursorcaret/
  */
+
 input {
   caret-color: theme('colors.mlt-yellow-primary');
 }
 
 /**
- * Loading animation... 
+ * Loading animation...
  * add this class to the <body> tag
  */
+
 body.loading {
   position: relative;
 }
 
 body.loading::before {
-  /* z-index: 1; */
   position: absolute;
   top: 0;
   left: 0;
@@ -334,76 +297,86 @@ body.loading::before {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  transition: opacity .8s ease-in-out;
+  transition: opacity 0.8s ease-in-out;
   opacity: 0;
 }
 
 body.loading.loading-show::before {
-  transition: opacity .8s ease-in-out;
+  transition: opacity 0.8s ease-in-out;
   opacity: 1;
 }
 
+
+#root {
+  transition: opacity 0.4s ease-in-out, filter 0.4s ease-in-out;
+}
+
 body.loading-show #root {
-  /* filter: blur(1rem); */
   opacity: 75%;
   transition: opacity 0.6s ease-in-out, filter 0.6s ease-in-out;
 }
 
-#root {
-  /* z-index: 5; */
-  transition: opacity 0.4s ease-in-out, filter 0.4s ease-in-out;
-}
-
 /**
-  * Search Field and Title
-  */
-.title-shadow-mlt-dark-0 {
-  /* text-shadow: 0 2px 12px black; */
-  text-shadow: 0 2px 12px theme('colors.mlt-dark-0');
-}
+ * Search Field and Title
+ */
 
-.search-input-box:hover .search-input-field {
-  /* --tw-drop-shadow: drop-shadow(0 10px 8px rgb(0 0 0 / 60%)) drop-shadow(0 4px 3px rgb(0 0 0 / 30%)); */
-  /* --tw-drop-shadow: drop-shadow(0 4px 6px theme('colors.mlt-dark-0')) drop-shadow(0 2px 4px theme('colors.mlt-dark-0')); */
-  --tw-drop-shadow: drop-shadow(0 4px 8px rgba(8, 8, 8, 0.6)) drop-shadow(0 2px 4px rgba(8, 8, 8, 0.6));
-  /* --tw-drop-shadow: drop-shadow(0 4px 8px red) drop-shadow(0 2px 4px rgba(8, 8, 8, 0.6)); */
-  transition: filter 0.3s ease-in-out;
+.title-shadow-mlt-dark-0 {
+  text-shadow: 0 2px 12px theme('colors.mlt-dark-0');
 }
 
 .search-input-field {
   transition: filter 0.5s ease-in-out;
 }
 
+.search-input-box:hover .search-input-field {
+  --tw-drop-shadow: drop-shadow(0 4px 8px rgba(8, 8, 8, 0.6)) drop-shadow(0 2px 4px rgba(8, 8, 8, 0.6));
+  /* --tw-drop-shadow: drop-shadow(0 4px 8px red) drop-shadow(0 2px 4px rgba(8, 8, 8, 0.6)); */
+  transition: filter 0.3s ease-in-out;
+}
 
 /**
  * Categories within the search results
  */
-.category-single+.category-single {
-  margin-top: 2rem;
-}
 
-.category-single {
+.category {
   background-color: theme('colors.mlt-dark-2');
 }
 
-.category-single:hover {
-  /* filter: drop-shadow(0 6px 8px theme('colors.mlt-dark-1')) drop-shadow(0 4px 6px theme('colors.mlt-dark-1')); */
+.category:hover {
   filter: drop-shadow(0 4px 6px theme('colors.mlt-dark-0')) drop-shadow(0 2px 4px theme('colors.mlt-dark-0'));
 }
 
-.category-single,
+.category,
 .category-entry {
   transition: filter 0.5s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
-.category-single:hover,
+.category:hover,
 .category-entry:hover {
   transition: filter 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
+.category + .category {
+  margin-top: 2rem;
+}
+
+/**
+ * Search Results Category Entry 
+ * Some rules are added in the section above.
+ * Here I want to emphasize the "scroll-margin-top" property.
+ * Refs:
+ * > https://stackoverflow.com/a/67923821/6543935,
+ * > see also the beginning of the layouts/.*
+ */
+
+.category-entry {
+  scroll-margin-top: 1rem;
+}
+
 /**
  * Footer buttons
-*/
+ */
+
 .view-source-hint,
 .switch-api-hint,
 .counter-api-hint {
@@ -429,7 +402,7 @@ body.loading-show #root {
 
 #api-hits-counter:hover .counter-api-hint {
   opacity: 1;
-  transform: translateY(.95rem);
+  transform: translateY(0.95rem);
   transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
 }
 
@@ -447,13 +420,13 @@ body.loading-show #root {
   z-index: 10;
 }
 
-.view-source-button:hover+.view-source-hint {
+.view-source-button:hover + .view-source-hint {
   opacity: 1;
   transform: translate(-100%);
   transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
 }
 
-.switch-api-button:hover+.switch-api-hint {
+.switch-api-button:hover + .switch-api-hint {
   opacity: 1;
   transform: translate(100%);
   transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
