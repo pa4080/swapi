@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import * as ReactDOM from "react-dom";
 import { SwapiTypes } from "../models";
 import { capitalize, defaultStyles, EntryStyles } from "./EntryFactoryHelpers";
 import EntryField from "./EntryField";
@@ -10,14 +11,12 @@ interface Props {
 }
 
 const EntryFactory: React.FC<Props> = ({ data, styles = defaultStyles, fields }) => {
-  const returnField = (field: string, i: number): JSX.Element => {
-    const name: string = field;
-    const value: string = data[field];
-    return <EntryField key={i} name={name} value={value} styles={styles} />;
-  };
+  useEffect(() => {
+    document.getElementById("scroll-to-top")?.scrollIntoView();
+  }, [data]);
 
   return (
-    <div className={`entry-container ${styles.EntryContainer}`}>
+    <div id="Entry" className={`entry-container ${styles.EntryContainer}`}>
       {data.category ? (
         <>
           <h2 className={styles.Cat}>{capitalize(data.category)}</h2>
@@ -26,7 +25,11 @@ const EntryFactory: React.FC<Props> = ({ data, styles = defaultStyles, fields })
               {capitalize(data.title ?? data.name)}
             </div>
             <div className={styles.DataContainer}>
-              {fields.map((field, i) => returnField(field, i))}
+              {fields.map((field, i) => {
+                const name: string = field;
+                const value: string = data[field];
+                return <EntryField key={i} name={name} value={value} styles={styles} />;
+              })}
             </div>
           </div>
         </>

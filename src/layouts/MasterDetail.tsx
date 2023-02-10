@@ -38,6 +38,7 @@ const MasterDetail: React.FC<Props> = (props) => {
         </div>
 
         <div className="mlt-grid-md-right px-8 py-6">
+          <div id="scroll-to-top" className="absolute top-0 left-0"></div>
           <Outlet />
         </div>
 

@@ -59,7 +59,6 @@ const EntryDispatcher: React.FC<Props> = (props) => {
 
         if (beMeticulous) {
           // Get the list of the false keys from dataToShow{}
-
           for (const category in dataToShow) {
             for (const key in dataToShow[category]) {
               if (key === "category") continue;
@@ -67,30 +66,18 @@ const EntryDispatcher: React.FC<Props> = (props) => {
                 secondApiReq.push(key);
             }
           }
-          /**
-           * To be removed 
-          secondApiReq.push("species"); // people | films
-          secondApiReq.push("vehicles"); // people | films
-          secondApiReq.push("starships"); // people | films
-          secondApiReq.push("residents"); // planets
-          secondApiReq.push("pilots"); // starships | species
-          secondApiReq.push("people"); // species
-          secondApiReq.push("characters"); // films
-          secondApiReq.push("planets"); // films
-           */
         }
 
         for (const item of secondApiReq) {
-          newEntry[item];
-
           if (newEntry[item]) {
             if (Array.isArray(newEntry[item])) {
               const newItems: JSX.Element[] = [];
 
               for (const fetchItem of newEntry[item]) {
-                // Here must check: typeof fetchItem === "string"
-                const getPrettyLink = await urlToPrettyInternalLink(String(fetchItem));
-                newItems.push(getPrettyLink);
+                if (typeof fetchItem === "string") {
+                  const getPrettyLink = await urlToPrettyInternalLink(fetchItem);
+                  newItems.push(getPrettyLink);
+                }
               }
 
               if (newItems.length) {
@@ -98,11 +85,12 @@ const EntryDispatcher: React.FC<Props> = (props) => {
               } else {
                 newEntry[item] = "N/a";
               }
-            } else {
-              // Here must check: typeof newEntry[item] === "string"
-              newEntry[item] = await urlToPrettyInternalLink(String(newEntry[item]));
+            } else if (typeof newEntry[item] === "string") {
+              newEntry[item] = await urlToPrettyInternalLink(newEntry[item]);
             }
-          } else if (newEntry.hasOwnProperty(item)) newEntry[item] = "N/a";
+          } else if (newEntry.hasOwnProperty(item)) {
+            newEntry[item] = String(newEntry[item]) ?? "N/a";
+          }
         }
 
         const entryId = `${newEntry.category}-${(newEntry.title ?? newEntry.name)
