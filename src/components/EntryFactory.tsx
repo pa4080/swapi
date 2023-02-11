@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import * as ReactDOM from "react-dom";
 import { SwapiTypes } from "../models";
 import { capitalize, defaultStyles, EntryStyles } from "./EntryFactoryHelpers";
 import EntryField from "./EntryField";
+import EntryWooIntegration from "./EntryWooData";
 
 interface Props {
   data: SwapiTypes;
@@ -16,26 +16,31 @@ const EntryFactory: React.FC<Props> = ({ data, styles = defaultStyles, fields })
   }, [data]);
 
   return (
-    <div id="Entry" className={`entry-container ${styles.EntryContainer}`}>
-      {data.category ? (
-        <>
-          <h2 className={styles.Cat}>{capitalize(data.category)}</h2>
-          <div className="entry-data">
-            <div className={styles.TitleName}>
-              {capitalize(data.title ?? data.name)}
+    <div id="Entry" className="relative w-fit h-fit">
+      <div className={`entry-container ${styles.EntryContainer}`}>
+        {data.category ? (
+          <>
+            <h2 className={styles.Cat}>{capitalize(data.category)}</h2>
+            <div className="entry-data z-10">
+              <div className={styles.TitleName}>
+                {capitalize(data.title ?? data.name)}
+              </div>
+              <div className={styles.DataContainer}>
+                {fields.map((field, i) => {
+                  const name: string = field;
+                  const value: string = data[field];
+                  return (
+                    <EntryField key={i} name={name} value={value} styles={styles} />
+                  );
+                })}
+              </div>
             </div>
-            <div className={styles.DataContainer}>
-              {fields.map((field, i) => {
-                const name: string = field;
-                const value: string = data[field];
-                return <EntryField key={i} name={name} value={value} styles={styles} />;
-              })}
-            </div>
-          </div>
-        </>
-      ) : (
-        <h2 className={styles.Cat}>Jumping through hyperspace...</h2>
-      )}
+          </>
+        ) : (
+          <h2 className={styles.Cat}>Jumping through hyperspace...</h2>
+        )}
+      </div>
+      {data.category ? <EntryWooIntegration titleName={data.title ?? data.name} /> : ""}
     </div>
   );
 };

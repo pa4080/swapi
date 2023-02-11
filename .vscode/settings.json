@@ -10,7 +10,10 @@
     "heroicons",
     "homeworld",
     "hyperdrive",
+    "infobox",
+    "Kenobi",
     "MGLT",
+    "opensearch",
     "predeploy",
     "Roboto",
     "Skywalker",
@@ -18,10 +21,12 @@
     "Starjedi",
     "Starjout",
     "starships",
+    "starwars",
     "SWAPI",
     "tailwindcss",
     "todos",
-    "usehooks"
+    "usehooks",
+    "wookieepedia"
   ],
   "spellright.language": ["en-US-10-1.", "en-US-9-0."],
   "markdownlint.config": {

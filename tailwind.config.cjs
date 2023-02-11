@@ -59,6 +59,7 @@ module.exports = {
       },
       spacing: {
         "mlt-1-plus": "6px",
+        "mlt-18": "4.5rem",
         "mlt-22": "5.5rem",
         "mlt-26": "6.5rem"
       }

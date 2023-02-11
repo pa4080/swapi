@@ -189,9 +189,16 @@ pre {
 .mlt-grid-md-right .entry-container {
   hyphens: auto;
   max-width: 768px;
-  /* min-width: 380px; /* follow the container */
+  min-width: 316px;
+  /* follow the container */
   width: -webkit-fill-available;
   width: -moz-available;
+}
+
+@media screen and (min-width: 1281px) {
+  .mlt-grid-md-right .entry-container {
+    min-width: 480px;
+  }
 }
 
 .entry-container a:hover {
@@ -368,6 +375,20 @@ body.loading-show #root {
 .category-entry:hover {
   transition: filter 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
+
+/**
+ * Wookieepedia integration
+ */
+.entry-image-container {
+  /* box-shadow: inset 0px 0px 6px 4px rgb(36 36 36); */
+  transition: filter 0.5s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.entry-image-container:hover {
+  filter: drop-shadow(0 4px 6px theme('colors.mlt-dark-0')) drop-shadow(0 2px 4px theme('colors.mlt-dark-0'));
+  transition: filter 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
 
 /**
  * Footer buttons
