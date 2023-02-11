@@ -32,12 +32,11 @@ const EntryDispatcher: React.FC<Props> = (props) => {
     selSrchEntry,
     setSelSrchEntry,
     beMeticulous,
-    showWooData
+    showWooData,
+    setSearchCategory
   } = useSearchContext();
   // let dataToShowManipulated: OutputData = JSON.parse(JSON.stringify(dataToShow));
-
   const [entry, setEntry] = useState<SwapiTypes>({} as SwapiTypes);
-
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -54,6 +53,8 @@ const EntryDispatcher: React.FC<Props> = (props) => {
       (async () => {
         // Get the Entry data
         const newEntry = await swapiEntry(cat!, id!);
+
+        if (!newEntry) navigate("/search");
         console.log(newEntry);
 
         // Get the data (name) of the related 'items' (entries)
@@ -113,7 +114,8 @@ const EntryDispatcher: React.FC<Props> = (props) => {
         setEntry(newEntry);
       })();
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      navigate("/search");
     }
   }, [location, beMeticulous, showWooData]);
 
@@ -126,14 +128,24 @@ const EntryDispatcher: React.FC<Props> = (props) => {
       navigate("/search");
     }
 
+    /**
+     * When it is direct hit to a Entry,
+     * without search  - i.e. /people/59/
+     */
     if (!searchResults.length) {
       try {
         (async () => {
-          const results = await swapiSearch([cat!], "[show all]");
-          setSearchResults(results);
+          // const results = await swapiSearch([cat!], "[show all]");
+
+          const catPaginationPage = String(Math.ceil(parseInt(id!) / 10));
+          const newCatState = await swapiSearch([cat!], catPaginationPage, "page");
+
+          setSearchCategory(cat!);
+          setSearchResults(newCatState);
         })();
       } catch (error) {
-        console.error(error);
+        console.log(error);
+        navigate("/search");
       }
     }
   }, []);

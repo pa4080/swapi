@@ -5,7 +5,7 @@
  * https://stackoverflow.com/a/58238067/6543935
  */
 import wooAxiosClient from "./wooAxiosClient";
-import defaultImage from "../assets/images/www.starwars.com-cover.webp";
+import defaultImage from "../assets/images/r2d2-3po-crop.webp";
 
 const wooSearchArticle =
     async (url: string): Promise<string> => {

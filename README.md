@@ -60,7 +60,7 @@ npm i usehooks-ts
   }
   ```
 
-- Note I need to access the app from other devices on the same network to test it on Mobile, Hackintosh, Windows etc.
+- Note I need to access the app from other devices on the same network to test it on Mobile, Hackintosh, Windows etc. This is also very useful option when you are using WSL2, otherwise you may need to [export the port manually](https://github.com/metalevel-tech/exc-js-homework/tree/master/scripts).
 
 - Clean the `src/` and `public/` directories and start working on the project.
 

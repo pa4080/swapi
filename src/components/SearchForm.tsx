@@ -5,6 +5,7 @@ import swapiSearch from "../helpers/swapiSearch";
 import SearchRadioCats from "./SearchRadioCats";
 import SearchInput from "./SearchInput";
 import { loadingDisable, loadingEnable } from "../helpers/loadingEffects";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   formStyle?: string;
@@ -18,7 +19,7 @@ const SearchForm: React.FC<Props> = ({
   radioStyle
 }) => {
   const { searched, setSearchResults, searchCategory } = useSearchContext();
-
+  const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleSearch = async (ev: React.FormEvent): Promise<void> => {
@@ -43,7 +44,8 @@ const SearchForm: React.FC<Props> = ({
       }, 800);
       setSearchResults(results);
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      navigate("/search");
     }
   };
 

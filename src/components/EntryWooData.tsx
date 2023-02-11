@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import WookieepediaLogo from "../assets/images/wookieepedia-logo.webp";
 import { useSearchContext } from "../contexts/SearchContextProvider";
-import defaultImage from "../assets/images/www.starwars.com-cover.webp";
+import defaultImage from "../assets/images/r2d2-3po-crop.webp";
 
 interface Props {
   data: {
@@ -29,14 +29,14 @@ const EntryWooData: React.FC<Props> = ({
                 alt="wookieepedia-logo"
                 width={288}
                 height={288}
-                className="bg-mlt-dark-2"
+                className="bg-mlt-dark-2 w-auto h-inherit"
               />
             </div>
             <img
               src={WookieepediaLogo}
               alt="wookieepedia-logo"
-              width={120}
-              height={130}
+              width={100}
+              height={100}
               className="absolute -top-12 -right-12"
             />
           </Link>
