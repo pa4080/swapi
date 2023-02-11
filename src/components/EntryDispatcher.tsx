@@ -4,6 +4,8 @@ import { useSearchContext } from "../contexts/SearchContextProvider";
 import { loadingDisable, loadingEnable } from "../helpers/loadingEffects";
 import swapiEntry from "../helpers/swapiEntry";
 import swapiSearch from "../helpers/swapiSearch";
+import wooParseArticleImage from "../helpers/wooParseArticleImage";
+import wooSearchArticle from "../helpers/wooSearchArticle";
 import { SwapiCats, SwapiTypes } from "../models";
 import dataToShow from "./EntryDispatcherData";
 import EntryFactory from "./EntryFactory";
@@ -97,6 +99,13 @@ const EntryDispatcher: React.FC<Props> = (props) => {
           .replace(/ /g, "-")
           .toLowerCase()}`;
         if (selSrchEntry !== entryId) setSelSrchEntry(entryId);
+
+        /**
+         * Wookieepedia integration API calls
+         */
+        const article = await wooSearchArticle(newEntry.title ?? newEntry.name);
+        const image = await wooParseArticleImage(article);
+        newEntry.woo = { article, image };
 
         setEntry(newEntry);
       })();

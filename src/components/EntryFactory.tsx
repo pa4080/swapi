@@ -40,7 +40,7 @@ const EntryFactory: React.FC<Props> = ({ data, styles = defaultStyles, fields })
           <h2 className={styles.Cat}>Jumping through hyperspace...</h2>
         )}
       </div>
-      {data.category ? <EntryWooIntegration titleName={data.title ?? data.name} /> : ""}
+      {data.category ? <EntryWooIntegration data={data.woo} /> : ""}
     </div>
   );
 };

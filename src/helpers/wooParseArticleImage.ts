@@ -15,7 +15,14 @@ const wooSearchArticle =
         }
 
         const getQuery = (titleOrUrl: string): string => {
-            const title: string = titleOrUrl.split("/").pop() || "Star Wars";
+            let title: string = titleOrUrl
+                .replace(/^.*\/wiki\/(.*?)(\/.*)?$/, "$1") ?? "Star Wars";
+
+            console.log(title);
+            // Fix the issue with X-Wing :) that could refer to...
+            if (title.toLowerCase() === "x-wing") {
+                title = "X-Wing_(painting)";
+            }
 
             const params: Params = {
                 action: "parse",
@@ -34,14 +41,16 @@ const wooSearchArticle =
         let result: string | null | undefined = "";
 
         try {
+
             const response = await wooAxiosClient.get(getQuery(url));
             let responseText = response.data.parse.text["*"];
             let responseHtml = new DOMParser().parseFromString(responseText, "text/html");
 
-            const isRedirect = responseHtml.querySelector(".redirectMsg .redirectText li a")?.getAttribute("title");
+            // Here should be used recursion...
+            let isRedirect = responseHtml.querySelector(".redirectMsg .redirectText li a")?.getAttribute("title");
             if (isRedirect) {
-                const secondRep = await wooAxiosClient.get(getQuery(isRedirect));
-                responseText = secondRep.data.parse.text["*"];
+                const secondResp = await wooAxiosClient.get(getQuery(isRedirect));
+                responseText = secondResp.data.parse.text["*"];
                 responseHtml = new DOMParser().parseFromString(responseText, "text/html");
             }
 

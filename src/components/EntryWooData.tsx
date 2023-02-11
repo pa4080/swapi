@@ -1,39 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import WookieepediaLogo from "../assets/images/wookieepedia-logo.webp";
-import wooSearchArticle from "../helpers/wooSearchArticle";
-import wooParseArticleImage from "../helpers/wooParseArticleImage";
 
-interface ArticleData {
-  article: string;
-  image: string;
-}
+// interface ArticleData {
+//   article: string;
+//   image: string;
+// }
 
 interface Props {
-  titleName: string;
+  data: {
+    article: string;
+    image: string;
+  };
 }
 
-const EntryWooData: React.FC<Props> = ({ titleName }) => {
-  const [articleData, setArticleData] = useState<ArticleData>({
-    article: "#",
-    image: "#"
-  });
-
-  useEffect(() => {
-    (async () => {
-      const article = await wooSearchArticle(titleName);
-      const image = await wooParseArticleImage(article);
-
-      setArticleData({ article, image });
-    })();
-  }, [titleName]);
-
+const EntryWooData: React.FC<Props> = ({ data }) => {
   return (
     <div className="entry-image-container mt-14 mb-6 w-fit h-fit relative">
-      <Link to={articleData.article} target="_blank">
+      <Link to={data.article} target="_blank">
         <div className="rounded-3xl overflow-hidden inline-block border border-mlt-dark-3 ">
           <img
-            src={articleData.image}
+            src={data.image}
             alt="wookieepedia-logo"
             width={288}
             height={288}
