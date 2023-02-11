@@ -381,12 +381,24 @@ body.loading-show #root {
  */
 .entry-image-container {
   /* box-shadow: inset 0px 0px 6px 4px rgb(36 36 36); */
-  transition: filter 0.5s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  opacity: 0.85;
+  transition: filter 0.5s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 .entry-image-container:hover {
   filter: drop-shadow(0 4px 6px theme('colors.mlt-dark-0')) drop-shadow(0 2px 4px theme('colors.mlt-dark-0'));
-  transition: filter 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: filter 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.entry-image-container img {
+  filter: grayscale(45%) brightness(0.95);
+  transition: filter 0.5s ease-in-out;
+}
+
+.entry-image-container:hover img {
+  filter: grayscale(0) brightness(1);
+  transition: filter 0.3s ease-in-out;
 }
 
 
@@ -399,7 +411,7 @@ body.loading-show #root {
 .counter-api-hint {
   float: right;
   position: absolute;
-  top: 26%;
+  top: 30%;
   width: max-content;
   opacity: 0;
   transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
@@ -419,7 +431,7 @@ body.loading-show #root {
 
 #api-hits-counter:hover .counter-api-hint {
   opacity: 1;
-  transform: translateY(0.95rem);
+  transform: translateY(1rem);
   transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
 }
 

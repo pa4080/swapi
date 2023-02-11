@@ -27,6 +27,8 @@ interface SearchContextType {
   setSelSrchEntry: React.Dispatch<React.SetStateAction<string>>;
   beMeticulous: boolean;
   setBeMeticulous: React.Dispatch<React.SetStateAction<boolean>>;
+  showWooData: boolean;
+  setShowWooData: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SearchContext = createContext<SearchContextType>({
@@ -40,7 +42,8 @@ const SearchContext = createContext<SearchContextType>({
   searchCategory: "all",
   isNewSession: true,
   selSrchEntry: "",
-  beMeticulous: false
+  beMeticulous: false,
+  showWooData: false
 });
 
 interface Props {
@@ -92,6 +95,13 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
     setLocalStorage("SS_API_METICULOUS", beMeticulous);
   }, [beMeticulous]);
 
+  const [showWooData, setShowWooData] = useState<boolean>(
+    getLocalStorage("SS_WOOKIEEPEDIA", true)
+  );
+  useEffect(() => {
+    setLocalStorage("SS_WOOKIEEPEDIA", showWooData);
+  }, [showWooData]);
+
   return (
     <SearchContext.Provider
       value={{
@@ -106,7 +116,9 @@ export const SearchContextProvider: React.FC<Props> = ({ children }) => {
         selSrchEntry,
         setSelSrchEntry,
         beMeticulous,
-        setBeMeticulous
+        setBeMeticulous,
+        showWooData,
+        setShowWooData
       }}
     >
       {children}

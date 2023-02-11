@@ -31,7 +31,8 @@ const EntryDispatcher: React.FC<Props> = (props) => {
     setIsNewSession,
     selSrchEntry,
     setSelSrchEntry,
-    beMeticulous
+    beMeticulous,
+    showWooData
   } = useSearchContext();
   // let dataToShowManipulated: OutputData = JSON.parse(JSON.stringify(dataToShow));
 
@@ -103,16 +104,18 @@ const EntryDispatcher: React.FC<Props> = (props) => {
         /**
          * Wookieepedia integration API calls
          */
-        const article = await wooSearchArticle(newEntry.title ?? newEntry.name);
-        const image = await wooParseArticleImage(article);
-        newEntry.woo = { article, image };
+        if (showWooData) {
+          const article = await wooSearchArticle(newEntry.title ?? newEntry.name);
+          const image = await wooParseArticleImage(article);
+          newEntry.woo = { article, image };
+        }
 
         setEntry(newEntry);
       })();
     } catch (error) {
       console.error(error);
     }
-  }, [location]);
+  }, [location, beMeticulous, showWooData]);
 
   useEffect(() => {
     if (!cats.includes(cat!)) {

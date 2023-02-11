@@ -18,6 +18,6 @@ export function loadingDisable(): void {
     document.body.classList.remove("loading-show");
     setTimeout(() => {
       document.body.classList.remove("loading");
-    }, 1600);
+    }, 2000);
   }
 }

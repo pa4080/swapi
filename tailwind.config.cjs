@@ -62,6 +62,10 @@ module.exports = {
         "mlt-18": "4.5rem",
         "mlt-22": "5.5rem",
         "mlt-26": "6.5rem"
+      },
+      scale: {
+        // https://github.com/tailwindlabs/tailwindcss/discussions/2146#discussioncomment-1996102
+        flip: "-1"
       }
     }
   },

@@ -5,14 +5,15 @@ import {
   FaGalacticRepublic,
   FaEmpire
 } from "react-icons/fa";
-// import { GiDeathStar } from "react-icons/gi";
+import { GiDeathStar } from "react-icons/gi";
 import { useSearchContext } from "../contexts/SearchContextProvider";
 import { getLocalStorage, setLocalStorage } from "../helpers/browserStorage";
 
 interface Props {}
 
 const Footer: React.FC<Props> = (props) => {
-  const { beMeticulous, setBeMeticulous } = useSearchContext();
+  const { beMeticulous, setBeMeticulous, showWooData, setShowWooData } =
+    useSearchContext();
 
   const defaultApi = import.meta.env.VITE_API_DEFAULT;
   const alternativeApi = import.meta.env.VITE_API_ALT;
@@ -44,6 +45,21 @@ const Footer: React.FC<Props> = (props) => {
         <div className="view-source-hint">View the source</div>
       </span>
 
+      {/* Show/Hide Wookieepedia data */}
+      <span
+        onClick={() => {
+          setShowWooData((prev) => !prev);
+        }}
+        className="switch-api-closure text-mlt-gray-3 "
+      >
+        <div className="switch-api-button hover:scale-125 px-3 py-3 transition-transform duration-300 cursor-pointer">
+          <GiDeathStar className={`text-3xl ${showWooData ? "" : "scale-x-flip"}`} />
+        </div>
+        <div className="switch-api-hint">
+          {showWooData ? "Hide Wookieepedia" : "Show Wookieepedia"}
+        </div>
+      </span>
+
       {/* Switch between swapi.py4e.com and swapi.dev */}
       <span onClick={setApiInUse} className="switch-api-closure text-mlt-gray-3 ">
         <div className="switch-api-button hover:scale-125 px-3 py-3 transition-transform duration-300 cursor-pointer">
@@ -53,7 +69,9 @@ const Footer: React.FC<Props> = (props) => {
             <FaEmpire className="text-3xl" />
           )}
         </div>
-        <div className="switch-api-hint">Switch the API</div>
+        <div className="switch-api-hint">
+          Switch the API {apiInUse === defaultApi ? "[1]" : "[2]"}
+        </div>
       </span>
 
       {/* Change the numbed of fetched data per request */}
@@ -70,7 +88,9 @@ const Footer: React.FC<Props> = (props) => {
             }`}
           />
         </div>
-        <div className="switch-api-hint">Show more data</div>
+        <div className="switch-api-hint">
+          Show {beMeticulous ? "less" : "more"} data
+        </div>
         <div id="api-hits-counter" className="absolute top-0 -right-12">
           <span>0</span> <div className="counter-api-hint">Total # API Req</div>
         </div>
