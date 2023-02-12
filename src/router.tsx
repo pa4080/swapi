@@ -2,7 +2,7 @@ import React from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import SearchResults from "./components/SearchResults";
 import Centered from "./layouts/Centered";
-import LeftRight from "./layouts/MasterDetail";
+import MasterDetail from "./layouts/MasterDetail";
 import EntryDispatcher from "./components/EntryDispatcher";
 
 const router = createBrowserRouter([
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <LeftRight />,
+    element: <MasterDetail />,
     children: [
       {
         path: "/",

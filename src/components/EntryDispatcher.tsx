@@ -135,10 +135,37 @@ const EntryDispatcher: React.FC<Props> = (props) => {
     if (!searchResults.length) {
       try {
         (async () => {
-          // const results = await swapiSearch([cat!], "[show all]");
+          /**
+           * This loads just the first page
+          const results = await swapiSearch([cat!], "[show all]");
+           */
+          /**
+           * The siple calculation of the page doesn't works because there 
+           * possibly have gaps in the lists - i.e. removed IDs,
+           * like at the first page of the Vehicles:
+           * [9]:vehicles/20/ [10]:vehicles/24/
+           const catPaginationPage = String(Math.ceil(parseInt(id!) / 10));
+           const newCatState = await swapiSearch([cat!], catPaginationPage, "page");
+           */
 
+          /**
+           * So we need to scan the category page by page,
+           * which is the slowest method I can image,
+           * but, IMO, nothing other is possible
+           * with the current API capabilities!?!
+
+           */
           const catPaginationPage = String(Math.ceil(parseInt(id!) / 10));
-          const newCatState = await swapiSearch([cat!], catPaginationPage, "page");
+          const regExp = new RegExp(`^.*\/${cat}\/${id}\/$`);
+          let newCatState: any[] = [];
+
+          for (let i: number = 1; i <= 10000; i++) {
+            const newCatCurrent = await swapiSearch([cat!], String(i), "page");
+            if (newCatCurrent[0].results.find((item) => item.url.match(regExp))) {
+              newCatState = newCatCurrent;
+              break;
+            }
+          }
 
           setSearchCategory(cat!);
           setSearchResults(newCatState);
