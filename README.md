@@ -1,4 +1,4 @@
-# [![SWAPI Search App with ReactJs and TypeScript](src/assets/images/repo-cover-swapi.metalevel.tech.webp)](https://swapi.metalevel.tech/)
+# [![SWAPI Search App with ReactJs and TypeScript](src/assets/images/repo-cover-metalevel.tech_prj-ts-react-swapi_powered-by.webp)](https://swapi.metalevel.tech/)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/78cf93fb0111435590e60a0e75ed9918)](https://www.codacy.com/gh/metalevel-tech/prj-ts-react-swapi/dashboard?utm_source=github.com&utm_medium=referral&utm_content=metalevel-tech/prj-ts-react-swapi&utm_campaign=Badge_Grade)
 
@@ -108,9 +108,11 @@ git push -u origin master
 
 </details>
 
-## Shell helpers
+<details>
 
-PNG > WebP conversion:
+<summary> Shell helpers </summary>
+
+## PNG > WebP conversion
 
 ```bash
 FILE="Input_image.png"
@@ -118,9 +120,11 @@ convert "$FILE" -quality 80 -strip -define webp:lossless=true -define webp:metho
 convert "$FILE" -quality 70 -strip -define webp:lossless=false -define webp:method=4 "${FILE%.*}_70.webp"
 ```
 
-SVG > ICO conversion:
+## SVG > ICO conversion
 
 ```bash
 FILE="Input_image.svg"
 convert -background transparent "$FILE" -clone 0 -resize 32x32  favicon.ico
 ```
+
+</details>

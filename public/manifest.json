@@ -1,0 +1,37 @@
+{
+  "short_name": "SWAPI Search MLT",
+  "name": "Star Wars API Search Application my MLT",
+  "description": "Search Star Wars API [swapi.py4e.com|swapi.dev] with ReactJs and TypeScript powered by Metalevel.tech.",
+  "icons": [
+    {
+      "src": "mlt.favicon.orange.dark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "mlt.favicon.orange.dark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "logo192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "logo512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#aaaaaa",
+  "background_color": "#333333",
+  "prefer_related_applications": false
+}

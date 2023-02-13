@@ -15,9 +15,11 @@ export function loadingDisable(): void {
   console.log("loadingDisable:", trigger);
 
   if (trigger === "false") {
-    document.body.classList.remove("loading-show");
     setTimeout(() => {
-      document.body.classList.remove("loading");
-    }, 2000);
+      document.body.classList.remove("loading-show");
+      setTimeout(() => {
+        document.body.classList.remove("loading");
+      }, 800);
+    }, 1600);
   }
 }
