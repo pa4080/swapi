@@ -186,6 +186,10 @@ pre {
   z-index: 0;
 }
 
+/**
+ * Entry within MasterDetail Layout
+ */
+
 .mlt-grid-md-right .entry-container {
   hyphens: auto;
   max-width: 768px;
@@ -218,6 +222,14 @@ pre {
   height: max-content;
   height: fit-content;
   height: -moz-fit-content;
+}
+
+/**
+ * Entry within Centered Layout
+ */
+
+.mlt-flex-centered-content .entry-wrapper {
+  padding: 1.25rem;
 }
 
 /**

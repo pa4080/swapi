@@ -2,7 +2,7 @@ import React from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import SearchResults from "./components/SearchResults";
 import Centered from "./layouts/Centered";
-import MasterDetail from "./layouts/MasterDetail";
+import Master from "./layouts/Master";
 import EntryDispatcher from "./components/EntryDispatcher";
 import { entryLoader } from "./loaders/entryLoader";
 
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <MasterDetail />,
+    element: <Master />,
     children: [
       {
         path: "/",

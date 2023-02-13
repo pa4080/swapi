@@ -50,6 +50,7 @@ cd prj-ts-react-swapi/
 npm install
 npm i react-router-dom axios dompurify @types/dompurify
 npm i usehooks-ts
+npm i @react-hook/media-query
 ```
 
 - Create start command in [`package.json`](package.json) file as follows:

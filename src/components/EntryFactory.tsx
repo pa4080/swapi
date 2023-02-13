@@ -16,7 +16,7 @@ const EntryFactory: React.FC<Props> = ({ data, styles = defaultStyles, fields })
   }, [data]);
 
   return (
-    <div id="Entry" className="relative w-fit h-fit">
+    <div id="Entry" className="entry-wrapper relative w-fit h-fit">
       <div className={`entry-container ${styles.EntryContainer}`}>
         {data.category ? (
           <>
