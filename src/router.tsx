@@ -4,6 +4,7 @@ import SearchResults from "./components/SearchResults";
 import Centered from "./layouts/Centered";
 import MasterDetail from "./layouts/MasterDetail";
 import EntryDispatcher from "./components/EntryDispatcher";
+import { entryLoader } from "./loaders/entryLoader";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/:cat/:id",
-        element: <EntryDispatcher />
+        element: <EntryDispatcher />,
+        loader: entryLoader
       }
     ]
   },

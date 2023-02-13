@@ -18,10 +18,13 @@ const wooSearchArticle =
             let title: string = titleOrUrl
                 .replace(/^.*\/wiki\/(.*?)(\/.*)?$/, "$1") ?? "Star Wars";
 
-            console.log(title);
-            // Fix the issue with X-Wing :) that could refer to...
+            // Fix the issue with X-Wing :) that could refer to...many models
             if (title.toLowerCase() === "x-wing") {
                 title = "X-Wing_(painting)";
+            }
+            // Fix the issue with TIE Bomber :) that could refer to...many models
+            if (title.toLowerCase() === "tie_bomber") {
+                title = "TIE/sa_bomber";
             }
 
             const params: Params = {
@@ -66,6 +69,18 @@ const wooSearchArticle =
             result = responseHtml
                 .querySelector("aside.portable-infobox figure a.image img")?.getAttribute("src")
                 ?.replace(/\/revision.*\?.*$/, "");
+
+            if (!result) {
+                result = responseHtml
+                    .querySelector("img.thumbimage")?.getAttribute("data-src")
+                    ?.replace(/\/revision.*\?.*$/, "");
+            }
+
+            if (!result) {
+                result = responseHtml
+                    .querySelector("img.thumbimage")?.getAttribute("src")
+                    ?.replace(/\/revision.*\?.*$/, "");
+            }
         } catch (error) {
             console.error(error);
         }

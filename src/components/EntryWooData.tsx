@@ -29,7 +29,7 @@ const EntryWooData: React.FC<Props> = ({
                 alt="wookieepedia-logo"
                 width={288}
                 height={288}
-                className="bg-mlt-dark-2 w-auto h-inherit"
+                className="bg-mlt-dark-2 max-h-96 max-w-max w-96"
               />
             </div>
             <img
