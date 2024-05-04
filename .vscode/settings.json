@@ -36,7 +36,7 @@
   "css.lint.unknownAtRules": "ignore",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "[yaml]": {
     "editor.formatOnSave": false
